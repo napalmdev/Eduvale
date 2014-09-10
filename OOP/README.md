@@ -170,3 +170,97 @@ boolean -> Boolean
 
 
 ####3. Dado um valor monetário entre R$ 0,00 e R$ 999.999.999,99, exibir seu extenso.
+
+
+
+
+
+
+
+
+
+
+
+
+####10/09/2014
+
+### Criação de Métodos
+
+    public class TestaSoma{
+        public static void main(String[] args){
+            int a = 5;
+            int b = 10
+            int c = soma(a,b);
+            System.out.println("A soma é: "+c);
+
+            public static int soma(int x, int y){
+                int z = x+y;
+                return z;        
+            }           
+        }    
+    }
+
+
+
+
+ 
+####Gerar um palpite da MegaSena
+
+>Obs:Classe Math.random() gera numeros randômicos, ela retorna Double e é nativa no Java
+
+    import javax.swing.*;
+    public class MegaSena{
+        public static voi main(Strin[] args){
+            String qtd = JOptionPane.showInputDialog("Quantos números:?");
+            int n = Integer.parseInt(qtd);
+            int palpite[] = new int[n];
+            sorteia(palpite);
+            ordena(palpite);
+            mostra(palpite);
+            }
+        }
+
+        public static void sorteia(int[]  num){
+            int temp[] = new int [60];
+            for(int i = 0; i<60; i++)
+                temp[i] = i+1;
+        
+            for(int i = 1; i<=1000; i++){
+                //faz cast de Double para int
+                int pos1 = (int)(Math.random()*60);
+                int pos2 = (int)(Math.random()*60);
+                int aux  = temp[pos1];
+                temp[pos1] = tempo[2];
+                temp[2] = aux;
+            }
+
+            for(int i = 0; i< num.length; i++){
+                num[i] = temp[i];
+            }    
+        }
+
+
+        public static void ordena(int[] num){
+            for(int i = 0; i<num.length-1; i++){
+                for(int j = i+1; j < num.length; j++){
+                    if(num[i] > num[j]){
+                        int aux = num[i];
+                        num[i] = num[j];
+                        num[j] = aux;
+                    }
+                }
+            }
+        }
+
+
+        public static void mostra(int[] num){
+            for(int i = 0; i < num.length; i++){
+                System.out.println(" "+num[i]);
+            }
+        }    
+    }    
+
+
+
+
+
