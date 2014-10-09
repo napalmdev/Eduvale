@@ -171,8 +171,44 @@ boolean -> Boolean
 
 ####3. Dado um valor monetário entre R$ 0,00 e R$ 999.999.999,99, exibir seu extenso.
 
+    public class Extenso{
+            
+        public static String parte(int n){
+            String numero = JOptionPane.showInputDialog("Qual o numero?");
+            int n = Integer.parseInt(numero);
+            String[] unidades = {"zero", "um", "dois", "tres", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "quatoze", "quinze", "dezeseis", "dezesete", "dezoito", "dezenove"};
+            String[] dezenas = {"", "", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa"};
+            String[] centenas = {"","cento", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "oitocentos", "novecentos"};
+            
+            if(n==100){
+                JOptionPane.showMessageDialog(null, "cem");
+            }
+            else
+            {
+                int u = n%10;
+                int d = n/10%10;
+                int c = n/100;
+                
+                if (d==1){
+                    d=0;
+                    u+=10;
+                }
+                
+                String texto = centenas[c];
+                if(c>0&&(d>0||u>0))
+                    texto+=" e ";
+                texto+=dezenas[d];
+                if(u*d>0)
+                    texto+=" e ";
+                
+                texto+=unidades[u];
+                JOptionPane.showMessageDialog(null, texto);
+            }   
+        
+        }
+           
 
-
+    }
 
 
 
@@ -264,3 +300,24 @@ boolean -> Boolean
 
 
 
+
+
+####08/10/2014
+
+### OOP - Object Oriented Program
+
+
+####Objeto = Estrutura de Dados + Algoritmos
+
+
+####Conceitos Básicos
+
+###1.Herança
+Criar uma Classe com base em outra já existente.    
+
+###2.Encapsulamento
+Proteger/Ocultar uma parte da aplicação(tanto dados como código) do restante da aplicação.
+(Facilidade de manutenção)    
+
+###3.Polimorfismo
+Implementar a mesma ação(Método) de formas diferentes.

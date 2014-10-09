@@ -282,3 +282,17 @@ Ex: Para uma Matriz que manipule até 10 nomes de no máximo 50 caracteres terí
 
 	for(i)
 
+
+
+
+
+
+
+####25/09/2014
+
+### Exercícios com Matrizes
+
+####Função para gerar números randômicos em C
+	srand(time(NULL));
+	variavel = rand() % 100;
+	
