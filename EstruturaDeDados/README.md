@@ -296,3 +296,57 @@ Ex: Para uma Matriz que manipule até 10 nomes de no máximo 50 caracteres terí
 	srand(time(NULL));
 	variavel = rand() % 100;
 	
+
+
+
+
+
+
+
+
+
+
+####04/09/2014
+
+### Métodos de Busca
+
+A disciplina de Estrutura de Dados na ciência da computação estuda algoritmos para, além da ordenação de dados em listas, busca de dados.
+ Métodos de busca em E.D nada mais é que algoritmos para varrer listas de dados em busca de um determinado valor, sendo este valor encontrado ou não. O que determina a efetividade de um método é o tempo que o mesmo leva para retornar se o o dado existe ou não na lista e, existindo, sua loclização na lista, ou seja, os índices da posição no vetor uni ou multi dimensional.
+
+ Lembrando que uma lista de dados é um conjunto de dados de correlacionados e armazenados em uma estrutura de dados básicos como os vetores e matrizes.
+
+ **Dado o Conjunto de Dados: {7, 15, 32, 0, -1, 18, 36, 9, 25, 7}**
+
+Crie um programa em C que carregue esses dados em memória e em seguida busque um valor informado pelo usuário retornando se o vlor existe e qual sua posição.
+
+	
+	int i,n,pos=-1,v[10] = {7, 15, 32, 0, -1, 18, 36, 9, 25, 7};
+
+	printf("Digita um numero inteiro ae modafoka: ");
+	scanf("%d",&n);
+	i = 0;
+	do{
+		if(v[i] == n){
+			n == i;
+			pos = i;	
+		}
+		i++;
+	}while(v[i] != n && i<10);
+
+	if(pos == -1)
+		printf("O numero %d que vc digitou nao foi encontrado");
+	else
+		printf("O numero %d que vc digitou foi encontrado na posicao %d do vetor.", n,pos);
+
+
+
+###Busca Sequencial
+
+É um método de Busca Padrão estudado e consolidado em ED. Ele consiste em varrer a lista de dados até encontrar o valor procurado, registrando o índice do elemento caso exista.
+Na melhor das hipóteses o valor estará na primeira posição da lista, e a rotina de repetição será executada apenas uma vez;
+Na pior das hipóteses o valor não existe, executando a rotina **n** vezes, sendo **n** o número de elementos da lista.
+	Esse método é efetivo em **listas não ordenadas**. Para listas de dados que encontram-se ordenadas existem métodos mais adequados e eficientes. 
+
+
+###Busca Binária  
+####Pesquise sobre, descrevendo seu funcionamento e crie o algoritmo C para aplicação do método em uma lista de 100 elementos.  
