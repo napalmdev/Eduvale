@@ -321,3 +321,162 @@ Proteger/Ocultar uma parte da aplicação(tanto dados como código) do restante 
 
 ###3.Polimorfismo
 Implementar a mesma ação(Método) de formas diferentes.
+
+
+
+###Exercícios OOP
+
+####1. Em java o que significa um pacote?
+Um pacote(package) a grosso modo é uma pasta no Sistema Operacional e serve para organizar a aplicação, nele podemos guardar arquivos de classes de mesma categoria e são essenciais para o conceito de Encapsulamento, se por exemplo precisarmos de alguma classe é só pesquisar no pacote daquela categoria.
+Ainda assim para determinar que uma classe pertence à certo pacote, devemos informar na primeira linha do arquivo da mesma o seguinte código:
+    
+    package nome_do_pacote;  
+
+Um exemplo de pacote é o **javax** do qual utilizamos a o subpacote **swing**.
+
+<hr>
+
+
+
+####2. Por que as classes devem ser organizadas em pacotes?
+Como em Java é possível criar e importar várias classes de terceiros para a aplicação, se não houver um forma de separar fisicamente tais classes, ocorrerá um problema de nome de arquivo, pois o Sistema Operacional não permite mais de um arquivo com mesmo nome no mesmo diretório, e é aí que entra o pacote, para separar tais arquivos de forma organizada e intuitiva, tem ainda a questão do Encapsulamento que será abordada abaixo.
+
+<hr>
+
+
+
+####3. Com relação a visibilidade de uma classe (permissão para instanciação de seus objetos) e com relação aos membros de uma classe (atributos e métodos), quais são os modificadores de acesso possíveis? Explique sua utilização.
+Para poder controlar o acesso devido e indevido à Classes, métodos e atributos, utilizamos o conceito de Encapsulamento que é possível em Java através dos Modificadores de Acesso, que são eles:
+<br>
+#####Public: 
+Toda a aplicação pode acessar o que for definido como **public**, este modificador de acesso pode ser definido tanto para atributos e métodos quanto para a própria Classe. <br>
+Quando a Classe é definida como public tanto as classes do mesmo pacote quanto as de outros pacotes podem instanciá-la normamente sem nenhuma restrição.
+<br>
+#####Protected
+O modificador de acesso **Protected** permite o acesso à métodos e atributos da Classe por todas as classes do mesmo pacote e por qualquer classe que a estenda(conceito de Herança), mesmo que estas não estejam no mesmo pacote.<br>
+Este modificador não pode ser usado para a Classe, somente para seus métodos e atributos.
+<br>
+#####Padrão(sem nenhum modificador de acesso) ou Default:
+Caso nenhum modificador de acesso seja definido, as classes do mesmo pacote terão acesso à Classe, métodos e atributos.
+<br>
+#####Private
+Este modificador permite acesso à métodos e atributos somente pela própria classe.<br> 
+Ele só pode ser definido para métodos e atributos, nunca para a Classe.
+<hr>
+
+
+
+####4. O que é UML e como uma classe e seus membros são representados?
+A UML (Unified Modeling Language), em português Linguagem Unificada de Modelagem é uma linguagem padrão para modelagem orientada a objetos. Ela tem como papel auxiliar a visualizar o desenho e a comunicação entre objetos e permite que desenvolvedores visualizem os produtos de seu trabalho em diagramas padronizados, ela é muito usada para criar modelos de sistemas de software.<br>
+A Linguagem Unificada de Modelagem possui diagramas (representações gráficas do modelo parcial de um sistema) que são usados em combinação, com a finalidade de obter todas as visões e aspectos do sistema.
+
+
+A Classe e seus membros são representados pelo **Diagrama De Classe**, este diagrama é fundamental e o mais utilizado na UML e serve de apoio aos outros diagramas. O Diagrama de Classe mostra o conjunto de classes com seus atributos e métodos e os relacionamentos entre classes.<br>
+Através de várias figuras geométricas o Diagrama de Classe consegue representar tudo o que há de mais necessário no planejamento de uma aplicação orientada a objetos, tais como:
+
+As Classes com seus atributos e métodos;<br>
+Os Modificadores de Acesso dos mesmos;<br>
+As relações intrinsicas entre as classes tais como: Herança, Associação, Agregação, Composição e etc.<br>
+
+Entre várias outras relações que tornam extremamente mais fácil e encorajador, primeiro criar e documentar seus modelos e somente depois partir para a codificação.
+
+
+
+<hr>
+
+
+
+####22/10/2014
+
+### UML
+
+
+
+####(-) - Private
+####(~) - Default
+####(#) - Protected
+####(+) - Public
+
+<br><br>
+
+
+####Abstract 
+#####Classe:
+Uma classe abstrata não pode ser instanciada. Não possui uma parte de sua funcionalidade, pois esta deverá ser implementadas por suas subclasses.
+
+#####Método:
+Não possui implementação. Deve ser implementado por uma subclasse.
+
+
+
+
+####Static
+#####Atributo:
+Existe uma única cópia do atributo para todos os objetos da classe.
+#####Método:
+Pode ser executado diretamente pela classe, sem a necessidade de criar objetos.
+
+
+
+
+####Final
+#####Classe:
+Não pode ser derivada(extendida).
+#####Atributo:
+Não pode ter seu valor alterado, pois ele é uma **Constante**.
+#####Método:
+Não pode ser sobrescrito.
+
+
+<br><br>
+
+###Exemplos
+
+|  Pessoa  |
+|----------|
+-nome:String 
+-rg: String |
++setNome(): void |
++getRg(): String |
++setRg(): void |
+
+
+    public class Pessoa{
+        private String nome;
+        private String rg;
+    
+
+        public String getNome(){
+            return nome;
+        }
+
+        public void setNome(String nome){
+            this.nome = nome;
+        }
+
+
+        public String getRg(){
+            return rg;
+        }
+
+        public void setRg(String rg){
+            this.rg = rg;
+        }
+    }
+
+
+
+
+
+    public class TestaPessoa{
+
+        public static void main(String[] args){
+
+            Pessoa p = new Pessoa();
+            p.setNome("Denis");
+            p.setRg("43656789-3");
+            System.out.println("Nome: " + p.getNome());
+            System.out.println("RG: " + p.getRg());
+        }
+    }
+
