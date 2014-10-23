@@ -434,17 +434,35 @@ Não pode ser sobrescrito.
 
 |  Pessoa  |
 |----------|
--nome:String 
--rg: String |
-+setNome(): void |
-+getRg(): String |
-+setRg(): void |
+|-nome:String| 
+|-rg: String |
+|+setNome(): void |
+|+getRg(): String |
+|+setRg(): void |
+
+
+
 
 
     public class Pessoa{
         private String nome;
         private String rg;
-    
+
+        
+        public Pessoa(String nome){
+            this.nome = nome;
+        }
+       
+       //Polimorfismo por sobrecarga(Overload) 
+        public Pessoa(String nome, String rg){
+            this.nome = nome;
+            this.rg = rg;
+        }
+
+        
+        public Pessoa(){
+        }
+      
 
         public String getNome(){
             return nome;
@@ -462,6 +480,14 @@ Não pode ser sobrescrito.
         public void setRg(String rg){
             this.rg = rg;
         }
+        
+        //Polimorfismo por Sobrescrita(Overwrite)
+        //Acontece porque o metodo toString() esta sendo sobrescrito da Classe Object
+        public String toString(){
+            String texto = getNome() + " - " + getRg();
+            return texto;
+        }
+        
     }
 
 
@@ -472,11 +498,14 @@ Não pode ser sobrescrito.
 
         public static void main(String[] args){
 
-            Pessoa p = new Pessoa();
+            Pessoa p = new Pessoa("Zuero", "34244343242");
+            System.out.println("Nome: " + p.getNome());
+            System.out.println("RG: " + p.getRg());        
             p.setNome("Denis");
             p.setRg("43656789-3");
             System.out.println("Nome: " + p.getNome());
             System.out.println("RG: " + p.getRg());
+            System.out.println(p);
+        
         }
     }
-
