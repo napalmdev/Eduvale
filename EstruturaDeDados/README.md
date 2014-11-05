@@ -306,7 +306,7 @@ Ex: Para uma Matriz que manipule até 10 nomes de no máximo 50 caracteres terí
 
 
 
-####04/09/2014
+####04/10/2014
 
 ### Métodos de Busca
 
@@ -349,4 +349,65 @@ Na pior das hipóteses o valor não existe, executando a rotina **n** vezes, sen
 
 
 ###Busca Binária  
-####Pesquise sobre, descrevendo seu funcionamento e crie o algoritmo C para aplicação do método em uma lista de 100 elementos.  
+####Pesquise sobre, descrevendo seu funcionamento e crie o algoritmo C para aplicação do método em uma lista de 100 elementos.
+
+
+
+
+
+
+####03/11/2014
+
+### Listas
+Em ciência da computação uma lista é uma estrutura de dado que implementa um conjunto de valores, onde os mesmos podem se repetir várias vezes. Uma instância de uma lista é uma representação computacional do conceito matemático de "sequência finita". Cada instância de um valor na lista é chamado comumente de item de entrada ou **elemento** da lista. Se ocorrer várias vezes um mesmo valor, cada ocorrência é considerada um item distinto.
+O nome lista também é usado para especificar Estruturas de Dados concretas, como o exemplo do vetor.
+
+
+####Características de Listas
+- Possuem Tamanho, que significa o número de elementos presentes na lista.
+	. Lista Estática possui tamanho fixo
+	. Lista Dinâmica possui tamanho mutável.
+- Possui índice, cada elemento da lista possui um índice, que é um valor que indica a posição do elemento na lista.
+	.Este índice é usado para encontrar ou remover um elemento na lista.
+
+
+####Tipos de listas em ED:
+
+ - Lista encadeada( ou ligada )
+ - Lista FIFO, ou Fila
+ - Lista LIFO, ou Pilha
+
+
+####Listas FIFO - Filas
+Em ciência da computação FIFO é, acrônimo de **First In , First Out**, que em português quer dizer, Primeiro que entra - Primeiro que sai.
+A idéia da fila é que um elemento só pode ser inserido no finl da lista e só ser retirado do início.
+
+
+
+####Listas LIFO - Pilha
+Em ciência da computação LIFO é acrônimo do inglês **Last In , First Out**, que em português significa Último que Entra, Primeiro que Sai, e refere-se a estrutura de dados do tipo pilha. Um novo elemento só pode ser inserido no topo da pilha e uma remoção será executada também em seu topo, ou seja, o último elemento a entrar na pilha será o primeiro a ser removido.
+Usa-se o termo **Push** e **Pop** para inserção e remoção na pilha. 
+
+
+####Aplicações Comuns:
+As Filas(FIFO) são amplamente aplicadas em filas de processos pelos sistemas operacionais, os processos são executados conforme entram na fila. Em programação são aplicados em listas de espera.
+
+As Pilhas(LIFO), são implementadas pelos compiladores e S.O para manipularem variáveis Locais. Também é utilizado para guardar o endereço de retorno de uma trecho de programa que chamou uma função que esteja em execução.
+
+
+####Listas Encadeadas
+São  estruturas de dados não lineares e dinâmicas, ou seja, possuem tamanho mutável ao longo da execução do programa.
+Esse tipo de lista caracteriza-se pela utilização de dois componentes por posição da lista , um guarda o valor e o outro guarda o endereço do próximo elemento.     
+
+
+
+
+
+###Exercício(Entregar Manuscrito próxima Aula)
+
+1. Criar um vetor de 100 elementos alimentado automaticamente com valores inteiros aleatórios, liste-o na tela  
+2. Implemente uma busca Sequencial no mesmo, de valor fornecido pelo usuário.
+3. Em seguida ordene o vetor com Bubble Sort, liste-o.
+4. Implemente Busca Binária(idem 2º).
+5. Remova um valor da lista usando FIFO.
+6. Remova uma valor da lista usando LIFO.

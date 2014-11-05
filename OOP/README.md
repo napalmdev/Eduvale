@@ -430,6 +430,12 @@ Não pode ser sobrescrito.
 
 <br><br>
 
+
+>Obs:A função do método construtor é inicializar o objeto e setar valores para os seus atributos
+
+
+
+
 ###Exemplos
 
 |  Pessoa  |
@@ -441,6 +447,9 @@ Não pode ser sobrescrito.
 |+setRg(): void |
 
 
+
+
+####Classe Pessoa
 
 
 
@@ -487,11 +496,21 @@ Não pode ser sobrescrito.
             String texto = getNome() + " - " + getRg();
             return texto;
         }
-        
+
+        //Método equals para comparar se um objeto é igual ao outro
+        public boolean equals(Object obj){
+           Pessoa outra = (Pessoa) obj;
+           return (nome.equalsIgnoreCase(outra.nome) && rg.equalsIgnoreCase(outra.rg)); 
+        }
+
     }
 
 
 
+
+
+
+####Classe TestaPessoa
 
 
     public class TestaPessoa{
@@ -507,5 +526,203 @@ Não pode ser sobrescrito.
             System.out.println("RG: " + p.getRg());
             System.out.println(p);
         
+            Pessoa p1 = new Pessoa("Joao","123-4");
+            Pessoa p2 = new Pessoa("Joao", "123-4");
+            
+            //irá retornar diferentes pois são dois objetos diferentes    
+            if(p1 == p2)
+                System.out.println("São iguais");
+            else
+                System.out.println("São diferentes");    
+
+            //irá retornar iguais
+            if(p1.equals(p2))
+                System.out.println("São iguais");
+            else
+                System.out.println("São diferentes");        
+
+
         }
     }
+
+
+
+
+
+
+
+####Classe Aluno
+
+
+    public class Aluno extends Pessoa{
+
+        private String ra;
+        private String curso;
+
+
+        public Aluno(){
+
+        }
+
+
+        public Aluno(String nome, String rg, String ra, String curso){
+            this.setNome();
+            this.setRg();
+            this.ra = ra;
+            this.curso = curso;    
+        }
+
+
+        public Aluno(String nome, String rg){
+            this(nome, rg, "", "");//Chama outro construtor na mesma classe    
+        }
+
+
+        public Aluno(String nome){
+            super(nome); //Chama um construtor da Super Classe
+        }
+
+
+
+        public String getRa(){
+            return ra;
+        }
+
+        public void setRa(String ra){
+            this.ra = ra;
+        }
+
+
+
+        public String getCurso(){
+            return curso;
+        }
+
+        public void setCurso(String curso){
+            this.curso = curso;
+        }
+
+
+
+        public String toString(){
+            String texto = super.toString();
+            texto += "\nRA: " + getRa();
+            texto += "\nCurso: " + getCurso();
+            return texto;    
+        }
+
+
+    }
+
+
+
+
+
+
+####Classe TestaAluno
+
+    public class TestaAluno(){
+
+        public static void main(String[] args){
+
+            Aluno a = new Aluno("Maria", "123-4", "987", "Sistemas");
+            System.out.println(a);
+
+            Aluno b = new Aluno("maria", "123-4", "654", "Agronomia");
+
+            if(a.equals(b)){
+                System.out.println("São iguais");
+            }
+            else{
+                System.out.println("São Diferentes");   
+            }
+
+        }
+    }
+
+
+
+>Obs: o this() como método invoca um construtor da mesma classe.
+
+
+
+>Obs: A palavra chave **super** chama algum método ou atributo(public ou protected) da Super Classe.
+
+
+
+
+
+###GUI - Graphical User Interface
+
+
+####AWT(Abstract Windowing Toolkit)
+Classes para:
+- Componentes de interface (dependentes do sistema gráfico)<br>
+- Gerenciadores de Layout<br>
+- Manipuladores de Eventos<br>
+- Cores e Fontes(tipos de tela)<br>
+- Desenho de formas primitivas<br>
+
+
+####Swing - Componentes de Interface(Independente do Sistema)
+Alguns componentes de interface gráfica:
+
+**JFrame -** Tela da Aplicação(Form) <br>
+**JPanel -** Painel utilizado para agrupar componentes em uma área da frame<br>
+**JLabel -** Exibe um rótulo(texto e/ou imagem)<br>
+**JTextField -** Caixa de texto usada para entrada de dados.<br>
+**JButton -** Executa uma ação<br>
+
+
+#####Passos sugeridos para criação de uma GUI:
+
+1. Importe os pacotes java.awt e javax.swing
+
+2. Declare a classe como derivada do JFrame
+
+3. Declare os componentes como atributos da classe
+
+4. No método construtor:
+    4.1. Crie os componentes(new)
+    
+    4.2. Adicione os componentes em painéis caso necessário
+    
+    4.3. Adicione os componentes e/ou painéis na frame
+    
+    4.4. Defina Características da frame( título, tamanho, posição, etc)
+    
+    4.5. Exiba a frame
+
+5. No método main(), instancie a classe
+
+
+**Exemplo**
+
+
+
+
+
+    import java.awt.*;
+    import javax.swing.*;
+
+    public class Oi extends JFrame{
+
+        JLabel lblNome;
+        JTextField txtNome;
+        JButton btnKrikaki;
+
+        public Oi(){
+            lblNome = new JLabel("Nome: ");
+            txtNome = new JTextField();
+            btnKrikaki = new JButton("Krikaki");
+        
+            add(lblNome, "North");
+            add(txtNome, "Center");
+            add(btnKrikaki, "South");
+            setTitle("Oi tudo bem");
+            
+        }
+
+    }
+
+
