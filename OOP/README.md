@@ -726,3 +726,243 @@ Alguns componentes de interface gráfica:
     }
 
 
+
+
+
+
+
+####05/11/2014
+
+### Gerenciadores de Layout
+
+São classes responsáveis pelo posicionamento e dimensionamento dos componentes dentro de um container(componente que aloca outros componentes).
+Para alterar o gerenciador de layout, usa-se o método **setLayout()**.
+
+
+
+####BorderLayout
+
+<table>
+    <tr>
+        <td colspan="3">North</td>
+    </tr>
+    <tr>
+        <td>West</td>
+        <td>Center</td>
+        <td>East</td>
+    </tr>
+    <tr><td colspan="3">South</td></tr>
+</table>
+
+Gerenciador padrão da Frame
+
+
+
+
+####FlowLayout
+<table>
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+Gerenciador padrão do painel
+
+
+
+
+####GridLayout
+<table>
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+####Exemplo
+
+    import java.awt.*;
+    import javax.swing.*;
+
+    public class TestLayout extends JFrame{
+
+        JButton btn1, btn2, btn3, btn4, btn5;
+
+        public TestLayout(){
+            btn1 = new JButton("Norte");
+            btn2 = new JButton("Centro");
+            btn3 = new JButton("Sul");
+            btn4 = new JButton("Oeste");
+            btn5 = new JButton("Leste");
+
+            setLayout(new FlowLayout());
+
+            //O construtor add() trabalha com sobrecarga de método, ou seja existe mais de um construtor e mais de um tipo de assinatura
+            //para ele como variadas ordens de parametros 
+            add(btn1, "North");//componente depois posicão
+            add("Center", btn2);//posicao depois componente
+            add(btn3, BorderLayout.SOUTH);//componente depois CONSTANTE(int) com posicao
+            add(btn4, "West");
+            add(btn5, "East");
+            setTitle("Layout");
+            pack();
+            setLocationRelativeTo(null);//o parametro null centraliza a frame no meio do monitor
+            setVisible(true);
+        }
+
+
+        public static void main(String args[]){
+            new TestLayout;
+        }
+    }
+
+
+
+
+####Exercício
+    
+    import java.awt.*;
+    import javax.swing.*;
+
+    public class AgendaTest extends JFrame{
+
+        JButton btn1, btn2, btn3;
+        JPanel pn1, pn2;
+        JLabel lblNome,lblFone;
+        JTextField txtNome, txtFone;
+
+        public AgendaTest(){
+            btn1 = new JButton("Novo");
+            btn2 = new JButton("Excluir");
+            btn3 = new JButton("Sair");
+            pn1 = new JPanel(new GridLayout(2,2));
+            pn2 = new JPanel(new FlowLayout());
+            lblNome = new JLabel("Nome: ");
+            lblFone = new JLabel("Fone: ");
+            txtNome = new JTextField();
+            txtFone = new JTextField();
+            
+            add(pn1, "Center");
+            add(pn2, "South");
+            pn1.add(lblNome);
+            pn1.add(txtNome);
+            pn1.add(lblFone);
+            pn1.add(txtFone);
+            pn2.add(btn1);
+            pn2.add(btn2);
+            pn2.add(btn3);
+            
+            setTitle("Agenda");
+            pack();
+            setLocationRelativeTo(null);
+            setVisible(true);
+        }
+        
+       
+        public static void main(String[] args) {
+            // TODO Auto-generated method stub
+            new AgendaTest();
+        }
+
+        
+    }
+
+
+
+
+####Exercicio de Casa
+    
+    package Ex03;
+
+    import java.awt.*;
+
+    import javax.swing.*;
+
+
+    public class Calculos extends JFrame{
+
+
+        JButton btn1, btn2, btn3, btn4;
+        JPanel pnNorte1, pnNorte2, pnCenter, pnSul;
+        JLabel lbl1,lbl2, lbl3;
+        JTextField txtNorte, txtSul;
+
+        public Calculos(){
+            btn1 = new JButton("Par/Impar");
+            btn2 = new JButton("Fatorial");
+            btn3 = new JButton("Primo");
+            btn4 = new JButton("Log2");
+            
+            pnNorte1    = new JPanel(new GridLayout(2,1));
+            pnNorte2    = new JPanel(new GridLayout(1,2));
+            pnCenter    = new JPanel(new GridLayout(2,2));
+            pnSul       = new JPanel(new GridLayout(1,2));
+            
+            lbl1    = new JLabel("Cálculos Específicos");
+            lbl2    = new JLabel("Número");
+            lbl3    = new JLabel("Resultado");
+            
+            txtNorte = new JTextField();
+            txtSul = new JTextField();
+            
+            add(pnNorte1, "North");
+            add(pnCenter, "Center");
+            add(pnSul, "South");
+            
+            pnNorte1.add(lbl1);
+            pnNorte1.add(pnNorte2);
+            pnNorte2.add(lbl2);
+            pnNorte2.add(txtNorte);
+            
+            pnCenter.add(btn1);
+            pnCenter.add(btn2);
+            pnCenter.add(btn3);
+            pnCenter.add(btn4);
+            
+            pnSul.add(lbl3);
+            pnSul.add(txtSul);
+            
+            setTitle("Programa de Cálculos");
+            pack();
+            setLocationRelativeTo(null);
+            setVisible(true);       
+        }
+        
+        
+        public static void main(String[] args) {
+            // TODO Auto-generated method stub
+            new Calculos();
+        }
+
+    }
+
+
