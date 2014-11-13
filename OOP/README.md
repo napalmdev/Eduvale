@@ -966,3 +966,243 @@ Gerenciador padrão do painel
     }
 
 
+
+
+
+####12/11/2014
+
+### Manipulação de Eventos
+
+
+>IMAGEM1
+
+
+
+
+
+####Ouvinte de Ação
+
+Classe que implementa a interface **ActionListener**
+
+**Método:  actionPerformed()**
+
+#####Exemplo
+
+
+>IMAGEM2
+
+
+
+####Implementando uma Interface Gráfica
+
+    import java.awt.*;
+    import javax.swing.*;
+    import java.awt.event.*;
+    //Quando utilizado o import ele traz somente as classes que estão soltas dentro do pacote e não as que estão em subpastas
+
+    public class Oi extends JFrame{
+      JLabel lblNome;
+      JTextField txtNome;
+      JButton btnKrikaki;
+
+      public Oi(){
+        lblNome = new JLabel("Nome:");
+        txtNome = new JTextField();
+        btnKrikaki = new JButton("Krikaki");
+
+        setLayout( new GridLayout(3,1));
+        add(lblNome);
+        add(txtNome);
+        add(btnKrikaki);
+        setTitle("Oi tudo bem");
+        setBounds(100,200, 300, 130); //Esquerda, Topo, Largura, Altura
+        setVisible(true);
+
+        OuvinteAcao ov = new OuvinteAcao();
+        btnKrikaki.addActionListener(ov);
+      }
+
+
+      public static void main(String[] args){
+        new Oi();
+      }
+
+
+      //Depois da palavra chave implements só pode vir uma Interface, diferente do extends que só pode vir uma Classe  
+      class OuvinteAcao implements ActionListener{
+        public void actionPerformed(ActionEvent evt){ //método obrigatório da Interface ActionListener
+          //Todos os métodos manipuladores de Interface obrigatoriamente devem ser public void
+          JOptionPane.showMessageDialog(null, "Oi " + txtNome.getText() + ", tudo bem?");
+
+        }
+      }
+
+    }
+
+
+
+
+####Implementanto Interface na própria Classe
+
+    import java.awt.*;
+    import javax.swing.*;
+    import java.awt.event.*;
+    //Quando utilizado o import ele traz somente as classes que estão soltas dentro do pacote e não as que estão em subpastas
+
+    public class ExibeNum extends JFrame implements ActionListener{
+      JLabel lblNum;
+      JTextField txtNum;
+      JButton btnKrikaki;
+
+      public ExibeNum(){
+        lblNum = new JLabel("Numero:");
+        txtNum = new JTextField(5);//O parametro de JTextFiled é a quantidade de caracteres que caberá no componente
+        btnKrikaki = new JButton("OK");
+
+        setLayout( new FlowLayout());
+        add(lblNum);
+        add(txtNum);
+        add(btnKrikaki);
+        setTitle("Exibe Numero");
+        pack();
+        setLocation(200, 100);
+        setVisible(true);
+
+        btnKrikaki.addActionListener(this);//Aqui Adiciona a própria Classe como Ouvinte de Ação
+      }
+
+
+      public void actionPerformed(ActionEvent evt){
+        int n = Integer.parseInt(txtNum.getText());
+        String texto = (n % 2 == 0) ? "Par" : "Impar";
+        JOptionPane.showMessageDialog(this, texto);
+
+      }
+
+
+
+      public static void main(String[] args){
+        new ExibeNum();
+      }
+      
+
+    }
+
+
+
+
+####Implementanto Interface com Classe anônima
+
+
+    import java.awt.*;
+    import javax.swing.*;
+    import java.awt.event.*;
+    //Quando utilizado o import ele traz somente as classes que estão soltas dentro do pacote e não as que estão em subpastas
+
+    public class Fatorial extends JFrame{
+      JLabel lblNum;
+      JTextField txtNum;
+      JButton btnOK;
+
+      public Fatorial(){
+        lblNum = new JLabel("Número:");
+        txtNum = new JTextField(5);
+        btnOK  = new JButton("OK");
+
+        setLayout( new FlowLayout());
+        add(lblNum);
+        add(txtNum);
+        add(btnOK);
+        pack();
+        setLocationRelativeTo(null);
+        setTitle("Fatorial");
+        setVisible(true);
+
+        btnOK.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+              int n = Integer.parseInt(txtNum.getText());  
+              JOptionPane.showMessageDialog(Fatorial.this, "" + fat(n));    
+            }
+        });
+      }
+
+      long fat(int n){
+        if(n <= 1)
+          return 1;
+        else
+          return n * fat(n-1);  
+      }
+
+
+      public static void main(String[] args){
+        new Fatorial();
+      }
+
+
+    }
+
+
+
+
+
+
+####Exemplo utilizando mais de um Ouvinte de Ação
+
+    import java.awt.*;
+    import javax.swing.*;
+    import java.awt.event.*;
+
+    public class MaisOuMenos extends JFrame{
+
+        JLabel lblN1, lblN2, lblResultado;
+        JTextField txtN1, txtN2, txtResultado;
+        JButton btnMais, btnMenos;
+
+        public MaisOuMenos(){
+            super("Mais ou Menos");//Acessa o construtor da SuperClasse(deve ser chamada na primeira linha do construtor)
+            lblN1 = new JLabel("Número 1:");
+            lblN2 = new JLabel("Número 2:");
+            lblResultado = new JLabel("Resultado:");
+            txtN1 = new JTextField();
+            txtN2 = new JTextField();
+            txtResultado = new JTextField();
+            txtResultado.setEditable(false);
+            btnMais = new JButton("Soma");
+            btnMenos = new JButton("Subtração");
+            setLayout(new GridLayout(4,2));
+            add(lblN1); add(txtN1);
+            add(lblN2); add(txtN2);
+            add(btnMais); add(btnMenos);
+            add(lblResultado); add(txtResultado);
+            pack();
+            setLocationRelativeTo(null);
+            setVisible(true);
+
+            Ouvinte ov = new Ouvinte();
+            btnMais.addActionListener(ov);
+            btnMenos.addActionListener(ov);
+        }
+
+        public static void main(String[] args){
+            new MaisOuMenos();
+        } 
+
+
+        class Ouvinte implements ActionListener{
+            public void actionPerformed(ActionEvent evt){
+                int n1 = Integer.parseInt(txtN1.getText());
+                int n2 = Integer.parseInt(txtN2.getText());
+
+                Object btn = evt.getSource();//retorna o objeto que ativou o evento
+                if(btn == btnMais){
+                    int resp = n1 + n2;
+                    txtResultado.setText("" + resp);//como a ver resp é int foi concatenado com aspas para virar String
+
+                }
+                else{
+                    int resp = n1 - n2;
+                    txtResultado.setText("" + resp);
+                }
+            }
+        } 
+    }
