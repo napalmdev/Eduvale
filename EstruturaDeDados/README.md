@@ -497,3 +497,104 @@ Esse tipo de lista caracteriza-se pela utilização de dois componentes por posi
 	}
 	  
 	printf("\n\n");
+
+
+
+
+
+###Exercício(Entregar em Aula)
+
+A. Criar um vetor de 100 elementos alimentado automaticamente com valores inteiros aleatórios de 1 a 1000.
+B. Mostrar o conteúdo do vetor na tela  
+C. Busque um valor numérico inteiro fornecido pelo usuário aplicando busca sequencial e mostre se o valor foi encontrado e sua posição(índice do elemento no vetor) ou não.
+D. Ordene o vetor aplicando o método Selection Sort, em seguida mostre o vetor ordenado.
+E. Busque um valor inteiro fornecido pelo usuário aplicando o método de Busca Binária e mostre se o valor foi encontrado e sua posição(índice do elemento no vetor) ou não.
+F. Retire e mostre um elemento do vetor aplicando o conceito FIFO.
+G. Retire e mostre um elemento do vetor aplicando o conceito LIFO.
+
+####Resolução:
+
+	int i, j, aux, min, find = 0, findPos =-1, v[100], v1[99], v2[99], userVal, inicio, meio, fim;
+	srand(time(NULL));
+	//alimentando vetor aleatoriamente
+	for( i = 0; i < 100; i++){
+	  v[i] = rand() % 1000;
+	  printf("%d\t", v[i]);
+	}
+
+	printf("\n\nDigite o valor que deseja buscar no vetor: ");
+	scanf("%d",&userVal); 
+
+
+
+	//Busca Sequencial
+	for( i = 0; i < 100; i++){
+	  if(v[i] == userVal){
+	    find = 1;
+	    findPos = i;
+	  }        
+	}
+	if(find == 1)
+	  printf("\n\nSEU VALOR FOI ENCONTRADO NA POSICAO %d DO VETOR\n\n", findPos);
+	else
+	    printf("SEU VALOR NAO FOI ENCONTRADO NO VETOR\n\n");  
+
+
+	//Selection Sort
+	for(i = 0; i < 100; i++){
+	  min = i;    
+	  for(j = i+1; j < 100; j++){
+	    if(v[j] < v[min]){
+	      min = j;
+	    }
+	  }
+	  if(i != min){
+	    aux = v[i];
+	    v[i] = v[min];
+	    v[min] = aux;
+	  }
+	}
+	for(i = 0; i < 100; i++)
+	  printf("%d\t", v[i]);
+
+
+	printf("\n\nDigite um novo valor que deseja buscar no vetor: ");
+	scanf("%d",&userVal);   
+
+	//Busca Binaria
+	find = 0;
+	inicio = 0;
+	fim = 99;
+	while(inicio <= fim && find == 0){
+	    meio = ((inicio + fim) / 2);
+	    if(v[meio] == userVal)
+	        find = 1;    
+	    else if(v[meio] > userVal)
+	        fim = meio - 1;
+	    else
+	        inicio = meio + 1;           
+	}        
+	if(find == 1)
+	    printf("SEU VALOR FOI ENCONTRADO NA POSICAO %d DO VETOR\n\n", meio);
+	else
+	    printf("SEU VALOR NAO FOI ENCONTRADO NO VETOR\n\n");
+	      
+	      
+	      
+	//Removendo um valor utilizando FIFO
+	printf("REMOVENDO INDICE UTILIZANDO FIFO\n");
+	for(i = 0; i < 99; i++){
+	  v[i] = v[i+1];
+	  printf("%d\t", v[i]);
+	}
+	                
+	printf("\n\n");
+
+	//Removendo um valor utilizando LIFO
+	printf("REMOVENDO INDICE UTILIZANDO LIFO\n");
+	v[99] = -1;
+	for(i = 0; i < 98; i++){
+	  printf("%d\t", v[i]);
+	}
+	  
+	printf("\n\n");
