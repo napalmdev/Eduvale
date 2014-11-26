@@ -1494,3 +1494,145 @@ qualquer classe que a implemente obrigatoriamente deve declarar todos os seus m�
 >Informa ao Compilador que o método a seguir será um método sobrescrito da SuperClasse
 
 ----------------------------------------------
+
+
+
+#26/11/2014
+
+####Dado o diagrama UML, escreva o código correspondente.
+
+<img src="./img/Diagram1.jpeg">
+
+
+    public class Conta {
+        protected String numero;
+        private String nome;
+        private double saldo;
+
+        public Conta( String numero, String nome ) {
+            this.numero = numero;
+            this.nome = nome;
+        }
+
+        public String getNumero() {
+            return numero;
+        }
+
+        public void setNumero(String numero) {
+            this.numero = numero;
+        }
+
+
+
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String numero) {
+            this.nome = nome;
+        }
+
+
+        
+        public double getSaldo() {
+            return saldo;
+        }
+
+        public void setSaldo(double saldo) {
+            this.saldo = saldo;
+        }
+
+    }    
+    
+    public class ContaCorrente extends Conta() {
+        private double limite;
+
+        public double getLimite() {
+            return limite;
+        }
+
+        public void setLimite(double limite) {
+            this.limite = limite;
+        }
+    }
+
+
+------------------------------------------------------------------
+
+
+####Criar o código que exiba a seguinte interface. Quando acionado o botão "OK", deve ser apresentada a tabuada do numero digitado. 
+
+<img src="./img/Diagram2.jpeg">
+
+    ```java
+    import java.awt.*;
+    import java.awt.event.*;
+    import javax.swing.*;
+    
+
+    public class Tabuada extends JFrame{
+      JLabel lblNumero;
+      JTextField txtNumero;
+      JButton btnOK;
+      JTextArea txaResult;
+
+
+      public Tabuada(){
+        lblNumero = new JLabel("Numero:");
+        txtNumero = new JTextField(5);
+        btnOK  = new JButton("OK");
+        txaResult = new JTextArea( 30, 20 ); // Coluna X Linha
+        JPanel pEntrada = new JPanel();
+
+        pEntrada.add(lblNumero);
+        pEntrada.add(txtNumero);
+        pEntrada.add(btnOK);
+        add(pEntrada, "North");
+        JScrollPane sp = new JScrollPane(txaResult);
+        add(sp, "Center");
+        setTitle("Tabuada");
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+
+        OuvinteBotao ovb = new OuvinteBotao();
+        btnOK.addActionListener(ovb);
+
+        OuvinteCaixa ovc = new OuvinteCaixa();
+        txtNumero.addActionListener(ovc);
+      }
+
+
+      public static void main(String[] args){
+        new Tabuada();
+      }
+
+
+      
+      //Implementacao dos ouvintes de acao
+
+      class OuvinteBotao implements ActionListener{
+        
+        public void actionPerformed(ActionEvent evt){
+          
+            int n = Integer.parseInt(txtNumero.getText());
+            txaResult.setText("");
+            for (int i = 1; i <= 10; i++ ) {
+                txaResult.append("\n" + i + " x " + n + " = " + n*i);
+            }
+
+        }
+      }
+
+
+
+      class OuvinteCaixa implements ActionListener{
+        
+        public void actionPerformed(ActionEvent evt){
+          btnOK.doClick();
+        }
+      }
+
+
+    }
+    ```
