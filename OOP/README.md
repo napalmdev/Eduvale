@@ -1564,75 +1564,202 @@ qualquer classe que a implemente obrigatoriamente deve declarar todos os seus m�
 
 <img src="./img/Diagram2.jpeg">
 
-    ```java
-    import java.awt.*;
-    import java.awt.event.*;
-    import javax.swing.*;
+```java
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class Tabuada extends JFrame{
+  JLabel lblNumero;
+  JTextField txtNumero;
+  JButton btnOK;
+  JTextArea txaResult;
+
+
+  public Tabuada(){
+    lblNumero = new JLabel("Numero:");
+    txtNumero = new JTextField(5);
+    btnOK  = new JButton("OK");
+    txaResult = new JTextArea( 30, 20 ); // Coluna X Linha
+    JPanel pEntrada = new JPanel();
+
+    pEntrada.add(lblNumero);
+    pEntrada.add(txtNumero);
+    pEntrada.add(btnOK);
+    add(pEntrada, "North");
+    JScrollPane sp = new JScrollPane(txaResult);
+    add(sp, "Center");
+    setTitle("Tabuada");
+    pack();
+    setLocationRelativeTo(null);
+    setVisible(true);
+
+    OuvinteBotao ovb = new OuvinteBotao();
+    btnOK.addActionListener(ovb);
+
+    OuvinteCaixa ovc = new OuvinteCaixa();
+    txtNumero.addActionListener(ovc);
+  }
+
+
+  public static void main(String[] args){
+    new Tabuada();
+  }
+
+
+  
+  //Implementacao dos ouvintes de acao
+
+  class OuvinteBotao implements ActionListener{
     
-
-    public class Tabuada extends JFrame{
-      JLabel lblNumero;
-      JTextField txtNumero;
-      JButton btnOK;
-      JTextArea txaResult;
-
-
-      public Tabuada(){
-        lblNumero = new JLabel("Numero:");
-        txtNumero = new JTextField(5);
-        btnOK  = new JButton("OK");
-        txaResult = new JTextArea( 30, 20 ); // Coluna X Linha
-        JPanel pEntrada = new JPanel();
-
-        pEntrada.add(lblNumero);
-        pEntrada.add(txtNumero);
-        pEntrada.add(btnOK);
-        add(pEntrada, "North");
-        JScrollPane sp = new JScrollPane(txaResult);
-        add(sp, "Center");
-        setTitle("Tabuada");
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
-
-        OuvinteBotao ovb = new OuvinteBotao();
-        btnOK.addActionListener(ovb);
-
-        OuvinteCaixa ovc = new OuvinteCaixa();
-        txtNumero.addActionListener(ovc);
-      }
-
-
-      public static void main(String[] args){
-        new Tabuada();
-      }
-
-
+    public void actionPerformed(ActionEvent evt){
       
-      //Implementacao dos ouvintes de acao
-
-      class OuvinteBotao implements ActionListener{
-        
-        public void actionPerformed(ActionEvent evt){
-          
-            int n = Integer.parseInt(txtNumero.getText());
-            txaResult.setText("");
-            for (int i = 1; i <= 10; i++ ) {
-                txaResult.append("\n" + i + " x " + n + " = " + n*i);
-            }
-
+        int n = Integer.parseInt(txtNumero.getText());
+        txaResult.setText("");
+        for (int i = 1; i <= 10; i++ ) {
+            txaResult.append("\n" + i + " x " + n + " = " + n*i);
         }
-      }
-
-
-
-      class OuvinteCaixa implements ActionListener{
-        
-        public void actionPerformed(ActionEvent evt){
-          btnOK.doClick();
-        }
-      }
-
 
     }
-    ```
+  }
+
+
+
+  class OuvinteCaixa implements ActionListener{
+    
+    public void actionPerformed(ActionEvent evt){
+      btnOK.doClick();
+    }
+  }
+
+
+}
+
+```  
+
+
+--------------------------------------------------------
+
+
+####Criar a seguinte aplicação
+
+<img src="./img/Diagram3.jpeg">
+
+
+#####Classe Contato
+
+```java
+
+public class Contato {
+    private String nome;
+    private String telefone;
+
+    public String getNome(){
+        return nome;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
+
+
+    public String getTelefone(){
+        return telefone;
+    }
+
+    public void setTelefone(String telefone){
+        this.telefone = telefone;
+    }
+
+}
+
+```
+
+
+#####Classe Formulario
+
+```java
+import  java.awt.*;
+import  java.awt.event.*;
+import  javax.swing.*;
+
+public class Formulario extends JFrame {
+    JLabel lblNome, lblFone;
+    JTextField txtNome, txtFone;
+    JButton btnEnviar;
+
+    public Formulario(){
+        lblNome = new JLabel("Nome: ");
+        lblFone = new JLabel("Telefone: ");
+        txtNome = new JTextField();
+        txtFone = new JTextField();
+        btnEnviar = new JButton("Enviar");
+        JPanel p = new JPanel();
+        p.setLayout(new GridLayout(2,2));
+        p.add(lblNome);
+        p.add(lblFone);
+        p.add(txtNome);
+        p.add(txtFone);
+        add(p, "Center");
+        add(btnEnviar, "South");
+        setTitle("Formulario");
+        pack();
+        setLocation(200, 300);
+        setVisible(true);
+
+        Ouvinte ov = new Ouvinte();
+        btnEnviar.addActionListener(ov);
+    }
+
+
+    public static void main(String[] args){
+        new Formulario();
+    }
+
+
+    class Ouvinte implements ActionListener{
+
+        public void actionPerformed(ActionEvent evt){
+            Contato c = new Contato();
+            c.setNome(txtNome.getText());
+            c.setTelefone(txtFone.getText());
+            new Confirmacao(c);
+        }
+    }
+}
+
+```
+
+
+#####Classe Confirmação
+
+```java
+
+import  java.awt.*;
+import  java.awt.event.*;
+import  javax.swing.*;
+
+public class Confirmacao extends JFrame {
+
+    private Contato contato;
+    private JLabel lblMsg, lblNome, lblFone;
+
+    public Confirmacao(Contato contato){
+        this.contato = contato;
+        lblMsg = new JLabel("Dados Cadastrados");
+        lblNome = new JLabel(contato.getNome());
+        lblFone = new JLabel(contato.getTelefone());
+
+        setLayout(new GridLayout(3,1));
+        add(lblMsg);
+        add(lblNome);
+        add(lblFone);
+        pack();
+        setLocation(600, 500);
+        setVisible(true);
+    }
+}
+
+```
