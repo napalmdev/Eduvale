@@ -28,3 +28,14 @@
   - Workbench - Oracle
 
 
+
+- #### bit = pulso elétrico valor 0 ou 1
+
+- #### Byte = 8 bits
+
+- #### Dado = resultado de uma observação ou medição
+
+- #### Informação = dado dentro de um contexto, com um SIGNIFICADO
+
+
+
