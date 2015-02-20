@@ -9,3 +9,11 @@
 3. [Programação Orientada a Objetos](/OOP)
 
 4. [Banco de Dados 1](/BancoDeDados1)
+
+5. [Gestão de S.O](/GestaoDeSO)
+
+6. [Linguagem de Programação I](/LinguagemDeProgramacaoI)
+
+7. [Estatística](/Estatistica)
+
+8. [Engenharia de Software](/EngenhariaDeSoftwareI)
