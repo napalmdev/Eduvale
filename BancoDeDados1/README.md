@@ -97,3 +97,26 @@
   - Blob
 
 
+
+------------------------------------------------
+#23/02/2015
+
+####Chave Primária( Primary Key - PK )
+**Definição:**
+ - Campo de uma tabela com o valor exclusivo 
+ - Não permite valor duplicado
+
+
+####Modelando uma tabela para cadastro de cidades
+
+##### Tabela: tblcidades
+
+#####Campos:
+Nome | Tipo | Tamanho | Null | A.I | P.K | ValorPadrão
+-----|------------------------------------------------|
+CidadeCodigo | int | - | Não | Sim | Sim |   
+CidadeNome | VarChar | 50 | Não | Não | Não | 
+CidadeUF | VarChar | 2 | Não | Não | Não | 
+CidadeIBGE | int | | Sim | Não | Não | 
+CidadeCEP | VarChar | 8 | Não | Não | Não | 
+CidadeTimeStamp | TimeStamp | | Não | Não | Não | 
