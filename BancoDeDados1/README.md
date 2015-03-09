@@ -120,3 +120,59 @@ CidadeUF | VarChar | 2 | Não | Não | Não |
 CidadeIBGE | int | | Sim | Não | Não | 
 CidadeCEP | VarChar | 8 | Não | Não | Não | 
 CidadeTimeStamp | TimeStamp | | Não | Não | Não | 
+
+
+
+
+
+
+
+
+------------------------------------------------
+#02/03/2015
+
+------------------------------------------------
+###Modelo de Dados
+
+| Artista ||
+|---------|----------|
+|IDArtista | int(PK)|
+Nome    |  varchar(50)
+Ritmo   | varchar(30)
+
+
+
+
+| CD | |
+|---------|----------|
+IDCD | int(PK)
+Titulo    |  varchar(30)
+Preco   | decimal(10,2)
+Gravadora | varchar(30)
+IDArtista | int(FK)
+
+
+
+
+| Musica |  |
+|---------|----------|
+|IDMusica | int(PK)|
+Titulo    |  varchar(50)
+Duracao   | int
+IDCD    | int(FK)
+
+
+
+
+
+
+
+####SQL - Padrão ANSI
+
+###CRUD
+
+ - C : Create
+ - R : Read
+ - U : Update
+ - D : Delete
+

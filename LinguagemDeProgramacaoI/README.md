@@ -10,3 +10,5 @@
 	scanf("%d", &a);
 ```
 > #####O *&* na instrução acima indica o endereço de memória a qual a variável **a** pertence. 
+
+

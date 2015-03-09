@@ -54,13 +54,13 @@ Todos os processos são implementados pelo S.O através da estrutura BCP. A part
 - Muitas dessas características são determinafdas no momento da criação do processo enquanto outras podem ser alteradas durante sua existência. 
 
 - Composto por 3 grupos de informações 
-	- IDENTIFICAÇÃO
-   - Cada processo criado recebe um identificação única (PID - Process Identification).
-   - Identificação do usuário (UID - User Identification) atribuída ao processo no momento de sua criação.
+  - IDENTIFICAÇÃO
+    - Cada processo criado recebe um identificação única (PID - Process Identification).
+   	- Identificação do usuário (UID - User Identification) atribuída ao processo no momento de sua criação.
 
-	- QUOTAS: São os limites de cada recurso do sistema que um processo pode alocar como por exemplo: Tamanho máximo de memória, número máximo de operações de E/S, etc.
+  - QUOTAS: São os limites de cada recurso do sistema que um processo pode alocar como por exemplo: Tamanho máximo de memória, número máximo de operações de E/S, etc.
 
-	- PRIVILÉGIOS: Definem as ações que o processo pode fazer em relação a ele mesmo e outros processos.
+  - PRIVILÉGIOS: Definem as ações que o processo pode fazer em relação a ele mesmo e outros processos.
 
 
 #### 3.2 Contexto de Hardware
@@ -206,3 +206,17 @@ Cada thread possui seu próprio contexto de hardware, porém compartilham o mesm
 ###Processos CPU-Bound X I/O Bound
 
 <img src="img/CPU-IO-Bound.jpg" alt="">
+
+
+
+
+
+
+
+
+
+------------------------------------------------
+#04/03/2015
+
+
+####Dica de programa para baixar: SOSIM
