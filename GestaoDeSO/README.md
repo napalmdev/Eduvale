@@ -220,3 +220,126 @@ Cada thread possui seu próprio contexto de hardware, porém compartilham o mesm
 
 
 ####Dica de programa para baixar: SOSIM
+
+
+
+
+
+
+------------------------------------------------
+#18/03/2015
+
+
+####Gerência do processador
+ - Introdução
+ - Funções Básicas
+ - Critérios de Escalonamento
+ - Tipos de Escalonamento
+ - Exercícios
+
+
+###Introdução
+A gerência do processador tornou-se indispensável tendo em vista o surgimento de S.O multiprogramáveis.
+
+Considerando que muitos processos estão no estado de pronto, deve-se escolher o próximo para fazer uso do processador.
+
+Para isso, na **Política de Escalonamento**, por meio de políticas, algoritmos e mecanismos que podem realizar o gerenciamento do processador.
+
+
+###Funções Básicas
+ - Manter o processador ocupado maior parte do tempo possível.
+ - Balancear o suo do processador entre os diversos processos.
+ - Privilegiar processos e aplicações importantes.
+
+
+
+#####Observações:
+> - ######Cada tipo de S.O possui sua própria política de escalonamento.
+  - ######Assim, sistemas de tempo real possui necessidades de escalonamento diferentes, de sistemas de tempo compartilhado.
+
+
+###Critérios de Escalonamento
+
+#####1. Utilização do Processador
+A ideia é ocupar o processador a maior parte do tempo. Um sistema com uso na faixa de 30% indica baixa carga de utilização ao passo que um sistema com faixa de 90% indica um sistema próximo da sua capacidade máxima.
+
+#####2. Throughput
+Representa o número de processos executados em um determinado intervalo de tempo. Quanto maior o indicador de Throughput, maior o número de tarefas executadas em função do tempo.
+
+#####3. Tempo de Processador
+Tempo que um processo leva no estado de execução durante seu processamento. As políticas de escalonamento não influenciam no tempo de processamento de um processo.
+
+#####4. Tempo de Espera
+É o tempo total que um processo permanece na fila de pronto aguardando para ser executado. Quanto menor o tempo melhor a eficiência no escalonamento.  
+
+#####5. Tempo de Turnaround
+É o tempo que um processo leva da sua criação ao término, levando em conta todo o tempo gasto na espera, fila de pronto, processamento e fila de espera.
+
+#####6. Tempo de Resposta
+É o tempo recorrido da requisição no sistema e o instante que a resposta é apresentada. Não se limita a capacidade de processamento tendo em vista a relação com dispositivos de E/S.
+
+
+###Tipos de Escalonamento
+
+
+####Escalonamentos Não-Preemptivos e Preemptivos
+Classificação segundo a capacidade de um S.O de interromper um processo em execução e substituí-lo pro outro(preempção).
+
+####1. Não-Preemptivos
+ - Primeiro tipo de escalonamento implementado em S.O multiprogramados.
+ - Quando um processo está em execução, nenhum outro evento externo pode ocasionar a perda do uso do processador.
+
+
+####2. Preemptivos
+ - Permite que o processo em execução seja interrompido alocando assim um outro processo ou evento.
+ - Permite priorizar processos, aplicável em sistemas operacionais modernos.
+ - Permite o uso de políticas de escalonamento para melhor balancear o uso do processador.
+
+
+###First-In First-Out(FIFO)
+O processo que primeiro chegar em estado de pronto é o selecionado para execução.
+
+Possui algoritmo simples, com necessidade de fila, onde os processos que possam para estado de pronto entram no fim da fila e são escalonados quando chegar no seu início.
+
+<img src="img/FIFO01.jpg" alt="">
+
+------------------------------------------------
+
+Imagem de Exemplo
+
+<img src="img/FIFO02.jpg" alt="">
+
+
+#####Baseando-se na imagem abaixo, responda as seguintes perguntas:
+
+ 1. Qual exemplo possui o melhor escalonamento? Justifique-o relacionando com o critério mais adequado:
+ >O segundo exemplo, pois .
+
+ 2. Ambos são FIFO? Porquê?
+ > Sim, ambos utilizam o fato de que o primeiro processo a chegar é o primeiro a ser executado.
+ 
+
+
+
+#####Desvantagens do FIFO
+ - Impossibilidade de prever quando um processo terá sua execução iniciada;
+ - O algoritmo não se preocupa em melhorar o tempo médio de espera dos processos, utilizando apenas a ordem de chegada dos mesmos
+ - Processos CPU-Bound tem vantagens em relação aos processor I/O-Bound
+
+O escalonamento FIFO apresenta-se na maior parte das situações de forma ineficiente na gerência do processador. O escalonamento não preemptivo limita sua aplicação em sistemas atuais de tempo compartilhado.
+
+
+
+----------------------------------------------------------------------
+#25/03/2015
+
+
+>####25/03/2015 - Análise e Apresentação de Artigo(em grupo)
+>####01/04/2015 - Lista de Exercícios para Revisão
+>####08/01/2015 - P1
+
+
+###Texto
+ 1. Trabalho Escrito
+ 2. Trabalho Apresentado
+

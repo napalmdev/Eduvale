@@ -47,3 +47,22 @@ São requisitos derivados do domínio da aplicação -> aqui entram as regras de
    - Facilidade de manter e adaptação. 
 
  
+
+ ----------------------------------------------------------
+ #27/03/2015
+
+
+ ###Respostas Exercício:
+
+ 1) Explicação e exemplo de Especialização, Generalização e Herança.
+>Ambas, Especialização e Generalização estão ligadas a Herança em OOP, exemplo:
+Imagine a seguinte situação: Você tem uma classe Professores e outra classe Alunos, estas duas classes tem alguns atributos em comum, como: Nome, Nome da Mãe, CPF, RG, etc. Como ambas as classes tem todos estes atributos em comum podemos criar uma classe generalizada(Generalização) delas, seria a classe Pessoa.
+Então teremos a Classe Pessoa como superclasse que terá os atributos em comum de alunos e professores, e ambas as classes herdarão(Herança) estes mesmos atributos dela, neste caso as Classes Aluno e Professor podem ser consideradas classes Especializadas(Especialização) da classe Pessoa.
+
+2)
+A) Agregação
+B) Agregação
+C) Associação
+D) Associação
+
+

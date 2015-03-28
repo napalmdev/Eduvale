@@ -113,13 +113,34 @@
 
 #####Campos:
 Nome | Tipo | Tamanho | Null | A.I | P.K | ValorPadrão
------|------------------------------------------------|
-CidadeCodigo | int | - | Não | Sim | Sim |   
-CidadeNome | VarChar | 50 | Não | Não | Não | 
-CidadeUF | VarChar | 2 | Não | Não | Não | 
-CidadeIBGE | int | | Sim | Não | Não | 
-CidadeCEP | VarChar | 8 | Não | Não | Não | 
-CidadeTimeStamp | TimeStamp | | Não | Não | Não | 
+-----|------|---------|------|-----|-----|----------------
+CidadeCodigo | int | - | Não | Sim | Sim 
+CidadeNome | VarChar | 50 | Não | Não | Não  
+CidadeUF | VarChar | 2 | Não | Não | Não  
+CidadeIBGE | int | | Sim | Não | Não 
+CidadeCEP | VarChar | 8 | Não | Não | Não 
+CidadeTimeStamp | TimeStamp | | Não | Não | Não  
+
+
+
+
+------------------------------------------------------
+
+
+
+##### Tabela: tblbairros
+
+#####Campos:
+Nome | Tipo | Tamanho | Null | A.I | P.K | ValorPadrão
+-----|------|---------|------|-----|-----|----------------
+BairroCodigo | int | - | Não | Sim | Sim 
+BairroCidade | int | - | Não | Não | Não 
+BairroNome | VarChar | 50 | Não | Não | Não  
+BairroTimeStamp | TimeStamp | | Não | Não | Não  
+
+
+
+
 
 
 
@@ -167,6 +188,8 @@ IDCD    | int(FK)
 
 
 
+
+
 ####SQL - Padrão ANSI
 
 ###CRUD
@@ -176,3 +199,122 @@ IDCD    | int(FK)
  - U : Update
  - D : Delete
 
+
+
+
+
+
+
+------------------------------------------------
+#09/03/2015
+
+------------------------------------------------
+###XAMP
+>#####Pacote de instalação que instala o Apache, PHP, Mysql e PHPMyAdmin
+
+###MySQL
+>#####É um SGBD, ou seja, um banco de dados relacional
+
+###PHP
+>#####Liguagem de programação voltada pra desenvolvimento Web
+
+###PHPMyAdmin
+>#####Conjunto de páginas escritos em PHP para gerenciar visulamente um banco de dados MySQL.
+
+
+
+###Cardinalidade
+
+ - ##### 1 - N
+ - ##### 1 - 1
+ - ##### N - N
+
+
+
+
+------------------------------------------------
+
+
+#16/03/2015
+
+
+
+##Normalização de Dados
+ - O que é?
+ - O que faz?
+ - Como se faz?
+
+------------------------------------------------
+
+###O que é? 
+Estabelecer um conjunto de regras de entrada de dados.
+
+------------------------------------------------
+
+###O que faz?
+ - Minimiza redundâncias e inconsistências; 
+ - Facilita manutenção e manipulação de dados;
+
+------------------------------------------------
+
+###Como faz?
+
+
+
+####Banco de Dados não normalizado
+
+Código | Nome | Cargo | Setor | Qtd Funcionarios
+-------|------|-------|-------|-----------------
+1  |    Maria | Gerente| Administração | 
+2  | José     | Repositor | Loja |
+3  | Ana      | Tec. Informática | Manutenção | 
+4  | Rui      | Repositor | Loja | 
+5  | Paulo    | Progrmador | Manutenção
+6  | João     |  Tecnico Info | Rede
+7  | Paula    |  Repositor  | Loja
+
+
+
+
+####Anomalia de exclusão
+Se você exclui o Gerente, excluirá também um Setor listado no memso registro
+
+####Anomalia de Ateração
+O que acontece se o setor de redes mudar o nome para setor de T.I?
+
+####Anomalia de Inclusão
+O que acontece quando você contratar mais um pessoa para o setor Loja?
+
+
+-------------------------------------------------
+
+###Como resolver?
+Utilizando uma das formas normais.
+
+
+
+###Primeira forma normal:  1 - N ( Um pra N )
+#####Procedimento
+ a - Identificar a Chave Primária da Entidade
+ b - Identificar o grupo repetitivo da Entidade
+ c - Criar uma nova entidade com o grupo repetitivo e vinculá-lo pela chave primária e secundária 
+
+
+
+
+--------------------------------------
+#23/03/2015
+
+
+##Exercício - 2,0 ponto
+
+Modele uma base de dados QUALQUER com pelo menos 6 tabelas relacionais.
+
+Enviar ao email **mauro.avare@gmail.com** até dia **30/03/2015, as 23:59**.
+
+O que precisa ser enviado?
+  . Modo estrutura das tabelas
+  . Relacionamento das Entidades
+
+Pode ser em PDF e feito no Workbench ou não.
+   
