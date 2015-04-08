@@ -177,3 +177,187 @@ else
 
 
 >####Obs: Somente utilizar a Busca Binária se o vetor já estiver ordenado, pois caso precise ordená-lo utilizando um algoritmo de ordenação o tempo das rotinas será maior que apenas utilizar a Busca Sequencial.
+
+
+
+
+
+
+
+1.Criar uma função contaA() que recebe uma string texto e retorna a quantidade de letras ‘a’ nessa string;
+
+2.Criar uma função inverte() que recebe uma string texto e essa função inverte a posição de seus caracteres.
+
+3.Ler 10 nomes e exibi-los em ordem alfabética.
+
+--------------------------------------
+#17/03/2015
+
+##Criação de subrotinas(funções)
+
+```c
+#include <stdio.h>
+#include <stdio.h>
+int soma(int, int);
+void main(){
+  int a, b;
+  a = 5;
+  b = 10;
+  printf("A soma é %d", soma(a,b));
+
+  int soma(int x, int y){
+    int total = x + y;
+    return total;
+  }
+}
+```
+
+
+####Criar um programa que exiba um palpite da MegaSena.
+
+**Requisitos Funcionais**
+ - Palpite com 6 números.
+ - Inteiros entre 1 e 60.
+ - Exibição dos números em ordem crescente.
+ - Não pode haver números repetidos.
+
+
+
+--------------------------------------
+#24/03/2015
+
+
+
+##Strings – Cadeias de Caracteres
+###1.Introdução
+Em linguagem C, uma string é representada por um array de caracteres.
+```Char nome[30] ;```
+Como o "conteúdo útil" da string pode ser menor que o tamanho do array, a string é finalizada com o caracter '\0' .
+
+###2.Algumas funções
+```
+gets()
+fgets()								
+
+puts() 
+printf(“%s”)											
+
+strlen() – Retorna o comprimento da string.
+strcpy(s1,s2) – Copia uma string s2 na string s1.
+strcmp(s1,s2) – Compara lexigraficamente duas strings.
+		Retorna = 0 se são iguais;
+			 < 0 se s1 vem antes que s2;
+			 > 0 se s1 vem depois que s2.
+
+```
+**Exemplo:**
+``` 
+strcpy(s1,“Ana”);
+strcpy(s2,”Maria”);
+strcat(s1,s2) – Concatena S2 em S1; (AnaMaria)
+```
+
+###3.Exercícios
+		
+
+
+
+--------------------------------------
+#31/03/2015
+
+####Exercício
+Dado N natural entre 0 e 999, exibir seu extenso.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int main(int argc, char *argv[])
+{
+  char unidade[][10] = {"","Um","Dois", "Tres", "Quatro", "Cinco", "Seis", "Sete", "Oito", "Nove", "Dez", "Onze", "Doze", "Treze", "Quatorze", "Quinze", "Dezesseis", "Dezessete", "Dezoito", "Dezenove"};
+  char dezena[][10] = {"","","Vinte","Trinta","Quarenta","Cinquenta","Sessenta","Setenta","Oitenta","Noventa"};
+  char centena[][15] = {"","Cento","Duzentos","Trezentos","Quatrocentos","Quinhentos","Seissentos", "Setessentos", "Oitossentos", "Novessentos"};
+  char ext[255];
+  int n, c, d, u; 
+  printf("Digite um numero: ");
+  scanf("%d",&n);
+  c = n/100;
+  d = n/10 % 10;
+  u = n % 10;
+  
+  if(d == 1){
+    u+= 10;
+    d = 0;
+  }
+  strcpy(ext, centena[c]);
+  if(n == 100){
+       puts("Cem");
+  }
+  else{
+      if(c > 0 && (d > 0 || u > 0)){
+        strcat(ext, " e ");
+      }
+      strcat(ext, dezena[d]);
+      if(c*d*u > 0){
+        strcat(ext, " e ");
+      }
+      strcat(ext, unidade[u]);
+      puts(ext);
+  
+  }
+  
+  system("PAUSE");	
+  return 0;
+}
+```
+
+
+####Exercício
+Criar uma função igual() que recebe duas Strings S1 e S2 e retorna 1 se forem iguais ou 0 caso o contrário.
+
+
+
+
+####Exercício
+Criar uma função somaPar() que recebe um array de inteiros num[] e um inteiro n representando a quantidade de elementos.
+Retornar a soma dos elementos pares.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+  srand(time(NULL));
+  int i, num[2];
+  for(i = 0; i < 2; i++){
+      num[i] = rand() % 100;
+      printf("%d\t",num[i]);  
+  }
+  
+  int somaPar(int n,int num[n]){
+    int i, soma = 0;
+    for( i = 0; i < n; i++){
+      if(num[i] % 2 == 0){
+        soma+= num[i];
+      }
+    }
+    
+    return soma;
+  }
+  
+  printf("%d\n\n", somaPar(2,num));
+  
+  system("PAUSE");	
+  return 0;
+}
+
+``` 
+
+
+
+
+####Exercício
+Criar uma função contaMaiusculas() que recebe uma String texto e retorna a quantidade de letras maiusculas.
