@@ -361,3 +361,201 @@ int main(int argc, char *argv[])
 
 ####Exercício
 Criar uma função contaMaiusculas() que recebe uma String texto e retorna a quantidade de letras maiusculas.
+
+
+
+
+
+-------------------------------------------------------------------
+#14/04/2015
+
+
+##Agregados Heterogêneos - Structs
+
+
+####Definindo uma Struct
+```c
+struct Pessoa{
+  char nome[30];
+  int idade;
+}
+```
+
+
+####Utilizando uma Struct
+```c
+struct Pessoa p1;
+p1.nome = "Joao";
+p1.idade = 12;
+```
+
+
+####Exemplo do uso de Struct
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Pessoa{
+  char  nome[30];
+  int idade;
+};
+
+void main(){
+  struct Pessoa p1;
+  
+  printf("Qual o nome?");
+  gets(p1.nome);
+  
+  printf("\nQual a idade?");
+  scanf("%d", &(p1.idade));
+
+  printf("\n-----------------");
+  printf("\nDados digitados: ");
+  printf("\nNome:%s", p1.nome);
+  printf("\nIdade:%d\n", p1.idade);
+  
+  system("PAUSE");
+}
+```
+
+
+
+####Exemplo 2 do uso de Struct
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Pessoa{
+  char  nome[30];
+  int idade;
+};
+
+void main(){
+  struct Pessoa pessoas[3];
+  int i;  
+  for(i = 0; i < 3; i++){
+    printf("Qual o nome?");
+    gets(pessoas[i].nome);
+    printf("\nQual a idade?");
+    scanf("%d", &(pessoas[i].idade));
+    fflush(stdin);
+  }
+
+  printf("\nDados digitados: ");
+
+  for(i = 0; i < 3; i++){
+    printf("\n-----------------");
+    printf("\nNome:%s", pessoas[i].nome);
+    printf("\nIdade:%d\n", pessoas[i].idade);
+  }
+  
+  system("PAUSE");
+  
+}
+
+```
+###Obs:
+>####A função do *fflush* é limpar o buffer, no caso de *fflush(stdin)* limpa o buffer de entrada de dados(teclado ou outros periféricos de entrada).
+
+
+
+
+-------------------------------------------------------------------
+#28/04/2015
+
+## Passagem de parâmetros por referência
+
+### Por Valor: 
+É feita uma cópia do valor do argumento para o parâmetro da função.
+
+### Por Referência: 
+É passado o endereço de memória para o parâmetro da função. 
+
+###Ponteiro:
+Variável que armazena o endereço de memória.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+void troca(int*, int*);
+int main(int argc, char *argv[])
+{
+  int a = 5, b = 10;
+  
+  printf("A: %d\tB: %d\n\n", a,b) ; 
+  
+  troca(&a, &b); //Passagem de parâmetro por referência
+  
+  printf("A: %d\tB: %d\n\n", a,b) ; 
+  
+  system("PAUSE");	
+  return 0;
+}
+
+void troca(int* a, int* b){ //recebe os ponteiros como parâmetros
+  int aux;
+  aux = *a;
+  *a = *b;
+  *b = aux;
+}
+```
+
+
+
+##Definição de Array
+>####Array é um agregado homogênio, sua estrutura de dados é estática, ou seja, sua quantidade de elementos é fixa.
+
+
+
+#Alocação Dinâmica de Memória
+É a reserva de uma área de memória em tempo de execução.
+
+**void\* malloc(tamanho)** - Aloca uma área de memória baseado no parâmetro tamanho e retorna um ponteiro genérico
+
+**free(endereco)** - Libera a área de memória informada no parâmetro endereço, endereço este que é retornado pela função malloc.
+
+** Exemplo:**
+```c
+ int* primos = (int*)malloc(sizeof(int) * 5); 
+```
+
+** Obs: sizeof(int)**: retorna o tamanho em bytes de um determinado tipo de dado.
+
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+int* adiciona(int, int*, int);
+int main(int argc, char *argv[])
+{
+  int* primos;
+  int numeros[] = { 2, 3, 5, 7, 11};
+  primos = &numeros[0];
+  primos = adiciona(13, primos, 5);
+  
+  int cont;
+  for(cont = 0; cont < 6; cont++){
+    printf("\n%d\n", primos[cont]);
+  }
+  
+  
+  system("PAUSE");	
+  
+  return 0;
+}
+
+int* adiciona(int valor, int* matriz, int qtd){
+  int* aux = (int*)malloc(sizeof(int) *(qtd+1));
+  int i;
+  for(i = 0; i < qtd; i++){
+    aux[i] = matriz[i];
+  }
+  aux[qtd] = valor; 
+  
+  return aux;
+}
+
+```

@@ -317,4 +317,16 @@ O que precisa ser enviado?
   . Relacionamento das Entidades
 
 Pode ser em PDF e feito no Workbench ou não.
-   
+
+
+---------------------------------------
+#04/05/2015
+
+###A linguagem SQL(Structured Query Language)
+Linguagem universal para manipulação de bancos de dados relacionais.
+
+###Vantagens
+. Altamente intuitiva (Inglês Estruturado)
+. Pode ser utilizada com a maioria dos SGBD
+
+###Sintaxe Básica

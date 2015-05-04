@@ -500,3 +500,103 @@ O escalonamento FIFO apresenta-se na maior parte das situações de forma inefic
 ####1. Defina Processo
 >
 
+
+
+---------------------------------------------------------------------
+#22/04/2015
+###SJF(Shortest Job First) - Não Preemptivo
+
+É a política de escalonamento na qual o processo que possuir menor tempo de utilização do processador é selecionado primeiramente para execução.
+
+
+
+###SRTF(Shortest Remaining Time First) - Preemptivo
+
+
+
+
+
+
+###Escalonamento por Prioridade
+Onde os processos possuem diferentes prioridades de execução, os de maior prioridade são escalonados preferencialmente.
+
+Algoritmos são implementados mediante a um clock, que interrompe o processador, escalonando outro processo se necessário.
+
+
+####Prioridade
+ Estática: Não é modificada durante a existência do processo.
+
+ Dinâmica: Pode ser modificada durante a execução do processo. 
+
+
+---------------------------------------------------------------------
+#29/04/2015
+
+###Gerenciamento do Processador
+
+- ##FIFO
+- ##SJF
+- ##Cooperativo
+- ##Circular
+- ##Circular Virtual
+- ##Circular com Prioridades
+- ##Múltiplas Filas
+- ##Múltiplas Filas com realimentação.
+
+
+- - -
+
+###Escalonamento Cooperativo
+. Busca aumentar o grau de multiprogramação em políticas de escalonamento não-preemptivos.
+. Um processo em execução pode voluntariamente liberar o processador voltando para a fila de pronto.
+. Essa liberação ocorre exclusivamente pelo processo em execução e não pelo S.O.
+
+** Desvantagem:** - Caso não verifique a fila de mensagens( que determina e existem outros processos na fila de pronto), os demais não terão chance de serem executados até a liberação da UCP pelo processo em execução.
+
+** Vantagem: ** - possibilidade de liberação da UCP permitindo melhor distribuição e uso do processador em sistemas não-preemptivos (primeiras versões do Win).
+
+###Escalonamento Circular
+. É um tipo de escalonamento preemptivo projetado para sistemas de tempo compartilhado.
+. Possui semelhança ao **FIFO** mas quando um processo passa para o estado de execução tem uma fatia de tempo(time-slice) para uso do processador.
+. O valor da fatia de tempo depende da arquitetura de cada SO(10 a 100 ms), que afeta a política e desempenho do escalonamento.
+
+** Desvantagem: ** - para time-slices pequenos existe um grande número de preempções e muitas trocas de contextos prejudicando dessa forma o desempenho do ssitema.
+
+** Vantagem: ** - não permite a monopolização da UCP. O tempo máximo de uso será determinado pela fatia de tempo.
+
+<br>
+<img src="img/FilaPronto.jpg" alt="Fila de Pronto" />
+<br>
+
+###Escalonamento Circular Virtual
+. Esse escalonamento apresenta-se como um refinamento do circular buscando reduzir suas deficiências.
+. Apesar da sua maior complexidade de implementação, resultados comprovam um melhor balanceamento de uso do processador.
+
+<br>
+<img src="img/FilaPronto2.jpg" alt="Fila de Pronto" />
+<br>
+
+###Circular com Prioridades
+. Implementa de forma conjunta o conceito de time-slice com prioridades.
+. Um processo permance em execução até que: termine seu tempo de processamento, voluntariamente passe para estado de espera ou sofra uma preempção por tempo ou prioridade.
+. Amplamente utilizado em sistemas de tempo compartilhado permitindo melhor balanceamento da UCP e diferenciação do grau de importância dos processos.
+<br>
+<img src="img/FilaPronto3.jpg" alt="Fila de Pronto" />
+<br>
+
+###Múltiplas Filas
+. Nesse escalonamento existem diversas filas de processos em estado de pronto, cada qual com uma prioridade específica.
+. Os processos são selecionados para as filas de acordo com características de cada uma como importância da aplicação, tipo de processamento, alocação em memória dentre outros.
+. O processo em execução sofre preempção caso um outro processo entre em uma fila de maior prioridade.
+. Esse escalonamento permite a conveniência de diferentes mecanismos de escalonamento em um mesmo SO.
+
+###Multiplas Filas com Realimentação
+. Semelhante ao escalonamento anterior, contudo os processos podem trocar de fila durante seu processamento.
+. Sua principal vantagem é permitir ao sistema operacional identificar dinamicamente o comportamento de cada processo e direcioná-lo para a fila mais adequada ao longo do seu processamento.
+. Um mecanismo FIFO adaptado com fatia de tempo implementado em todas as filas exceto a de menor prioridade que utiliza o escalonamento circular.
+. A fatia de tempo de cada fila varia em função da sua prioridade, ou seja, quanto maior a prioridade, menor a fatia de tempo.
+
+<br>
+<img src="img/mfilas.jpg" alt="Fila de Pronto" />
+<br>
+

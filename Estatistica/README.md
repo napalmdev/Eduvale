@@ -22,3 +22,7 @@ Dados n( n >= 2 ) números reais não nagativos n/1.n/2.......n/n define-se a me
 ##Desvio Padrão
 
 ##Variância
+
+------------------------------------------------
+#30/04/2015
+
