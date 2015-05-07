@@ -330,3 +330,65 @@ Linguagem universal para manipulação de bancos de dados relacionais.
 . Pode ser utilizada com a maioria dos SGBD
 
 ###Sintaxe Básica
+** SELECT** Campo1, Campo2, Campo3
+** FROM** Tablea1, Tablea2, Tablea3
+** WHERE** (Condicao1 = 'x')
+** AND** (Condicao2 = 'y')
+** AND** (Condicao3 = 'w')
+** OR** (Condicao4 = 'R')
+** ORDER BY** Campo ASC/DESC
+** LIMIT** 1
+
+== ==
+####Exercício
+|tblcidades|
+|----------|
+|CidadeCodigo|
+|CidadeNome|
+|CidadeUF|
+|CidadeCEP|
+
+
+Dada a tabela estruturada acima, crie um SQL que:
+
+
+a) -  Liste todas as cidades que tenham Avaré  no nome;
+ ```sql
+ SELECT CidadeNome FROM tblcidades WHERE CidadeNome LIKE '%avaré%' 
+ ```
+ 
+b) - Liste todas as cidades da UF 'SP'
+ ```sql
+ SELECT CidadeNome FROM tblcidades WHERE CidadeUF = 'SP' 
+ ```
+ 
+c) - Liste todas as cidades que começam com 'w'
+ ```sql
+ SELECT CidadeNome FROM tblcidades WHERE CidadeNome LIKE 'w%' 
+ ```
+ 
+d) - Liste as 5 últimas cidades em ordem alfabética
+ ```sql
+ SELECT CidadeNome FROM tblcidades ORDER BY CidadeNome DESC LIMIT 5 
+ ```
+
+e) - Liste o CEP de Manaus
+ ```sql
+ SELECT CidadeNome, CidadeCEP FROM tblcidades WHERE CidadeNome = 'Manaus' AND CidadeUF = 'AM' 
+```
+
+f) - Contar quantas cidades a UF 'PR' tem
+ ```sql
+ SELECT CidadeUF, COUNT(*) AS Total FROM tblcidades WHERE CidadeUF = 'PR' 
+```
+
+
+g) - Contar todas as cidades por UF
+ ```sql
+ SELECT CidadeUF, count(*) as Total FROM tblcidades GROUP BY CidadeUF ORDER BY CidadeUF ASC
+```
+
+h) - Contar quantas cidades tem na região Sudeste
+ ```sql
+ SELECT COUNT(*) AS Sudeste FROM tblcidades WHERE CidadeUF IN ('PR', 'SP', 'RJ', 'MG')  
+```

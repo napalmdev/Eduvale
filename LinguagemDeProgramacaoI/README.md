@@ -559,3 +559,139 @@ int* adiciona(int valor, int* matriz, int qtd){
 }
 
 ```
+
+
+
+-----
+#05/05/2015
+
+##Recursividade
+
+É quando uma função chama ela mesma para a realização de uma tarefa.
+. Cada chamada deve ser feita com um problema "menor".
+. O problema deve ser finito, ou seja, deve haver uma situação em que o problema possa ser resolvido sem chamar a função novamente.
+
+#####Exemplo
+Fatorial de 5 = 5*4*3*2*1
+
+###Exemplo de Sequência de Fibonacci com função recursiva(não recomendado)
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+long fibo(int);
+long fibo2(int);
+int main(int argc, char *argv[])
+{
+  clock_t tempo1, tempo2;
+  int num;
+  
+  //printf("\nTIME INICIAL %d\n\n", time(NULL));
+  
+  printf("Digite um numero: ");
+  scanf("%d", &num);
+  
+  tempo1 = clock()/CLOCKS_PER_SEC;  
+  printf("\nITE\n%u\n", fibo2(num));
+  tempo2 = clock()/CLOCKS_PER_SEC;
+  printf("\nLevou %d\n\n", tempo2 - tempo1);
+
+
+  tempo1 = clock()/CLOCKS_PER_SEC;
+  printf("\nREC\n%u\n", fibo(num));
+  tempo2 = clock()/CLOCKS_PER_SEC;
+  printf("%d - %d", tempo1, tempo2);
+  printf("\nLevou %d\n\n", tempo2 - tempo1);
+  
+  
+  system("PAUSE");	
+  return 0;
+}
+
+long fibo(int n){
+  if(n <= 2) {
+    return 1;
+  }
+  
+  return fibo(n-1) + fibo(n-2);
+}
+
+
+long fibo2(int n){
+  int i = 0;
+  int a = 1, b = 1, c = 1;
+  
+  if(n <= 2){
+    return 1;
+  }
+  
+  for(i = 3; i <= n; i++){
+    c = a+b;
+    a = b;
+    b = c;  
+  }
+  return c;
+}
+```
+
+#####Obs:
+>**typedef:** Cria um Alias para um tipo de Dado
+>ex: 
+
+
+###Exemplo de Lista Ligada
+```c
+#include <stdio.h>
+#include <stdlib.h>
+struct cell{
+  char nome[30];
+  char fone[20];
+  struct cell * proximo;
+};
+
+typedef struct cell celula;
+
+void insere(celula *);
+void exibe;
+
+celula *head = NULL;
+main(){
+  celula *p = NULL;
+  int qtd, cont;
+  printf("Quantos elementos?");
+  scanf("%d", &qtd);
+  fflush(stdin);
+
+  for(cont = 1; cont<= qtd; cont++){
+    p = (celula*) malloc(sizeof(celula));
+    if(p != NULL){
+      printf("Nome: ");
+      gets(p->nome);
+      printf("Fone: ");
+      gets(p->fone);
+      insere(p);
+    }
+  }
+  exibe();
+ } 
+ void insere(celula *p){
+    if( head == NULL){
+      head = p;
+      p->proximo = NULL;
+    }
+    else{
+      p->proximo = head;
+      head = p;
+    }
+ }
+
+ void exibe(){
+    celula* p = head;
+    while(p != NULL){
+      printf("\n%s - %s", p->nome, p->fone);
+      p = p->proximo;
+    }
+ }
+
+```

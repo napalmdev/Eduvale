@@ -443,63 +443,6 @@ O escalonamento FIFO apresenta-se na maior parte das situações de forma inefic
 ###Lista de Revisão
 
 
-####1. Defina Processo
->Ambiente onde programas são executados, sendo em seu escopo deve-se incluir o próprio programa a ser executado, assim como outras informações, tais como: valores de variáveis, registradores, contador de programa e outros necessários para definição completa de seu estado.
-
-####2. Explique o Contexto de Software e seus componentes.
->
-
-####3. Explique o Contexto de Hardware e seus componentes.
->
-
-####4. Explique o Espaço de Endereçamento e seus componentes.
->
-
-####5. Explique a importância do Contexto de Hardware no escalonamento.
->
-
-####6. Explique o mecanismo de funcionamento entre os processos em espera, executando e pronto.
->
-
-####7. Defina subprocesso e thread.
->
-
-####8. Cite Vantagens do ambiente MultiThread.
->
-
-####9. O que é Politica de Escalonamento?
->
-
-####10. Cite algumas funções da gerência de processador. 
->
-
-####1. Defina Processo
->
-
-####1. Defina Processo
->
-
-####1. Defina Processo
->
-
-####1. Defina Processo
->
-
-####1. Defina Processo
->
-
-####1. Defina Processo
->
-
-####1. Defina Processo
->
-
-####1. Defina Processo
->
-
-####1. Defina Processo
->
-
 
 
 ---------------------------------------------------------------------
@@ -599,4 +542,77 @@ Algoritmos são implementados mediante a um clock, que interrompe o processador,
 <br>
 <img src="img/mfilas.jpg" alt="Fila de Pronto" />
 <br>
+
+
+- - -
+
+# 06/05/2015
+
+###Políticas de Escalonamento em S.O de tempo compartilhado
+
+. Em geral caracterizam-se pelo processamento interativo, exigindo tempos de respostas baixo para os usuários.
+. A escolha de uma política de escalonamento deve levar em conta o compartilhamento de recursos de forma equitativa para balancear o uso da UCP entre os processos.
+
+|Processo | Tempo de Processador | Características|
+|---------|----------------------|----------------|
+| A | 21 | CPU-Bound|
+| B | 6 | I/O-Bound|
+
+<img src="img/PoliticaEsc01.jpg" alt="Politica de Escalonamento" />
+
+. Política de escalonamento disponibilizando muito tempo para o processo A.
+. Para tempos iguais em escalonamento circular com tempo de 5(time-slice).
+. Todos serão tratados igualmente porém o CPU/Bound levará vantagem pelo fato de I/O-Bound passar muito tempo em espera.
+. Em sistemas Circular com prioridades, o balanceamento I/O-Bound é compensado pelo seu tempo dispendido em espera.
+. Um refinamento se dá no balanceamento com Prioridades Dinâmicas.
+. Atualmente a maioria dos S.O utiliza esse tipo de escalonamento.
+
+
+###Exercícios
+
+#####1) Qual a diferença entre o escalonamento FIFO e circular?
+. O FIFO é um escalonamento não-preemptivo em que cada processo faz uso da UCP até que o processo seja terminado ele organiza os processos de modo que o proimeiro da fila será o primeiro a utilizar a UCP e consequentemente o primeiro a sair. 
+
+. Já o Circular é Preemptivo e organiza seus processos da mesma forma que o FIFO, o primeiro a entrar é o primeiro a sair, porém a diferença é que ele define uma fatia de tempo(time-slice) para cada processo, assim sendo, cada processo só fará uso da UCP até que sua fatia de tempo termine e assim o processo voltará para o final da fila de processos. 
+
+
+#####2) Descreva o escalonamento SJF e o escalonamento por Prioridades.
+. O escalonamento SJF(Short Job First) é não-preemptivo e organiza seus processos pelo tamanho dos mesmos, o menor processo é o primeiro a fazer uso da UCP, ele não possui fatia de tempo então o processo faz uso da UCP até que o mesmo termine. 
+
+. O escalonamento por prioridades é preemptivo e organiza seus processos definindo uma prioridade para cada um deles, o processo com maior prioridade será escalonado primeiro, essa prioridade pode ser estática(não alterada durante a existência do processo) ou dinâmica(pode ser alterada durante a execução do mesmo).
+
+#####3) Qual a diferença entre Preempção por Tempo e por Prioridade?
+ A diferença é que por tempo o processo somente será interrompido quando sua Time-Slice acabar, já por prioridade o processo pode ser interrompido em meio ao uso da UCp caso algum processo de maior prioridade entre na fila de pronto.
+
+#####4) O Escalonamento por Múltiplas Filas com Realimentação favorece processos CPU-Bound ou I/O-Bound? Justifique.
+I/O-Bound, pois geralmente os processos I/O-Bound são processos que exigem utilização imediata da UCP, então no caso deste escalonamento o processo de I/O seria escalonado para um fila de maior prioridade fazendo a preempção do processo atual e priorizando o processo de I/O. Quando terminado o uso da UCP pelo processo de I/O o mesmo vai para uma fila de menor prioridade, e é reescalonado para a fila de maior prioridade novamente quando necessário.
+
+#####5) Considere que Cinco processos sejam criados no instante de tempo 0, desenhar um diagrama ilustrando os escalonamento dos processos segundo as politicas especificadas abaixo( o tempo de troca de contexto deve ser desconsiderado).
+a) FIFO
+b) SJF
+c) Prioridade(número menor implica em prioridade maior)
+
+| Processo | Tempo UCP | Prioridade|
+|----------|-----------|-----------|
+|P1 | 10 | 3 |
+|P2 | 14 | 4 |
+|P3 | 5 | 1 |
+|P4 | 7 | 2 |
+|P5 | 20 | 5 |
+
+
+- - -
+
+<img src="img/exFIFO.jpg" alt="FIFO" />
+
+- - -
+
+<img src="img/exSJF.jpg" alt="SJF" />
+
+- - -
+
+<img src="img/exPRIORIDADE.jpg" alt="PRIORIDADE" />
+
+
+
 
