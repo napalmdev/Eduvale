@@ -616,3 +616,116 @@ c) Prioridade(número menor implica em prioridade maior)
 
 
 
+- - -
+#13/05/2015
+##Gerenciamento de Memória
+
+##### 1) Introução 
+##### 2) Funções Básicas
+##### 3) Alocação de Memória
+##### 4) Alocação Contígua Simples
+##### 5) Técnica de Overlay
+##### 6) Alocação Contígua Particionada
+
+###Introdução
+. Historicamente memória sempre foi vista como recurso escasso e caro.
+. Uma das maiores preocupações na concepção de S.O é fazer o menor e melhor uso possível da memória.
+. Mesmo com a atual redução de custos e aumento de sua capacidade, seu gerenciamento ainda é um dos fatores mais importantes para o S.O.
+. Em sistemas monoprogramados sua gerência é simples, contudo em sistemas multiprogramados essa gerência torna-se crítica.
+. Surge a necessidade de maximizar então o suo de usuários e aplicações usando a memória de forma otimizada.
+
+###Funções Básicas
+. Manter o máximo de processos residentes na MP, permitindo otimizar o compartilhamento da UCP e outros recursos.
+. Permitir a execução de programas que tenham tamanho maior que a memória física disponível(Overlay e Memória Virtual).
+. Proteger as áreas de memórias já ocupadas.
+
+###Alocação de Memória
+. Pode ser subdividida e classificada segundo a imagem abaixo.
+
+
+<img src="img/Alocacao01.jpg" alt="alocacao" />
+
+
+
+###Alocação Contígua Simples
+. Implementada e utilizada nos primeiros S.O.
+
+. Basicamente, a MP é subdividida em duas áreas.
+ - uma para o sistema operacional
+ - uma para o programa de usuário
+
+. Dessa forma a única preocupação no gerenciamento é da aplicação não ultrapassar seu espaço disponível.
+
+
+<img src="img/Alocacao02.jpg" alt="Alocacao" />
+
+
+. Uma problemática do cenário ** 1** é que o programa do usuário poderia de forma proposital ou não acessar a área de memória do S.O.
+
+. Assim, visando otimizar essa  alocação os sistemas passam a adotar registradores para limitar essas áreas entre S.O e aplicação.
+
+. Mesmo com esse mecanismo, esse tipo de alocação não utilizava suficientemente os recursos pois apenas um usuário poderia dispor do espaço em memória. Além disso caso o programa não utilizasse todo o espaço havia o desperdício do espaço restante.
+
+####Técnica de Overlay
+. Visa solucionar os problemas encontrados na alocação contígua subdividindo o espaço ocupado pelos programas em módulos.
+
+. Dessa forma permite a execução independente de cada módulo, utilizando uma mesma área de memória.
+
+.Exemplo: Considere um programa que tenha 3 módulos.
+ - Principal
+ - Cadastramento(Independente)
+ - Impressão(Independente)
+
+. A ** Independência** significa que quando um módulo estiver na memória para execução, o outro não precisa estar necessariamente presente.
+
+. O módulo principal é comum aos dois módulos Cadastramento e Impressão, logo permanece em memória todo o tempo de execução.
+
+######Memória Principal 1
+
+<img src="img/Alocacao03.jpg" alt="Alocacao" />
+
+
+
+###Alocação Contígua Particionada Estática
+. Leva esse nome pois nos primeiros S.O multiprogramados ao qual foram implementadas dividia a memória em pedaços de tamanho fixo chamados partições. 
+
+. O tamanho das partições era definido de acordo com o tamanho dos prgramas.
+
+. Existindo a necessidade da alteração do tamanho da partição o sistema deveria ser desativado e reiniciado com uma nova configuração.
+
+** Tabela de Partições**
+
+|Partição |Tamanho|
+|---------|--------|
+| 1 | 2Kb |
+| 2 | 5Kb |
+| 3 | 8Kb |
+
+** Memória Principal**
+
+|S.O |
+|---------|
+| Partição1(2Kb) |
+| Partição2(5Kb) |
+| Partição3(8Kb) |
+
+** Programas**
+
+|A|D|C|B|E|
+|-|-|-|-|-|
+|3Kb|6Kb|1kb|4kb|2kb|
+
+. Os programas poderiam ser carregados e xecutados somente em uma partição específica mesmo havendo disponibilidade de outros.
+
+
+
+<img src="img/Alocacao04.jpg" alt="Alocacao" />
+
+
+- - -
+
+##Pergunta
+Em gerência de memória a partir da alocação simples explique as principais deficiências e as soluções até a Alocação Contígua Particionada Estática.
+
+** Resposta: **
+>Minha resposta manow

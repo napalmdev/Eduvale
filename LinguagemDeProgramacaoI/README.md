@@ -695,3 +695,186 @@ main(){
  }
 
 ```
+
+
+
+
+-----
+#12/05/2015
+
+###Estudo de Listas Ligadas
+#####- Listas simplesmente ligadas
+>Cada nó possui um ponteiro para o próximo nó da lista.
+
+####Inclusão no início em uma lista vazia
+>if(head == NULL)
+>p->next = null (seta o próximo nó da lista como NULL)
+>head = p (seta p como o primeiro elemento da lista)
+
+
+
+####Inclusão no início em uma lista não vazia
+>p->next = head;(ponteiro next de p recebe o início da lista)
+>head = p; (head que indica o início da lista recebe o p)
+
+
+####Referências para início(head) e fim(tail) da lista
+#####- Inclusão lista vazia
+>if(head == NULL);
+>p->next = NULL;
+>head = p;
+>tail = p;
+
+#####- Inclusão no início lista não vazia
+>p->next = head;
+>head = p;
+
+
+#####- Inclusão no final lista não vazia
+>p->next = NULL;
+>tail->next = p;
+>tail = p;
+
+
+
+
+#####- Exclusão com 1 elemento
+
+```c
+if(head == NULL){
+  //lista está vazia
+}
+
+//excluindo
+if(head != NULL && head == tail){  
+  //só tem um elemento
+  p = head;
+  head = NULL;
+  tail = NULL;
+  free(p);//libera o espaço de memória
+}
+
+```
+
+
+#####- Exclusão no início com mais de um elemento
+```c
+p = head; //p como auxiliar pra manter o ponteiro anterior
+head = p->next; //aponta o head para o próximo item
+free(p); //libera a área de memória de p
+```
+
+
+#####- Exclusão no final com mais de um elemento
+```c
+//posicionao auxiliar p no tail
+p = tail;
+
+//posiciona o auxiliar x no head
+x = head;
+
+//itera sobre a lista comparando enquanto o próximo de x for diferente de p
+//x recebera o proximo de x
+while(x->next !=p){
+  x = x->next;
+}
+
+//tail receberá x identificando x como ultimo elemento
+tail = x;
+
+//como x será o ultimo elemento seu proximo sera null
+x->next = NULL;
+
+//desaloca o espaço de memoria para p
+free(p);
+```
+
+-----
+
+###Lista Duplamente Ligada
+>Cada nó possui duas referÊncias(ponteiros) para o próximo nó e outra para o nó anterior.
+
+#####Inclusão na lista vazia
+```c
+head = null;
+tail = null;
+if(head == NULL){ //lista vazia
+  p->next = NULL;
+  p->prior = NULL;
+  head = p;
+  tail = p;
+}
+```
+
+#####Inclusão no inicio de lista não vazia
+```c
+p->prior = NULL;
+p->next = head;
+head->prior = p;
+head = p;
+```
+
+
+
+#####Inclusão no final de lista não vazia
+```c
+p->next = NULL;
+p->prior = tail;
+tail->next = p;
+tail = p;
+
+//pode-se substituir tail->next = p; e tail = p; por
+p->prior->next = p;
+```
+
+
+
+#####Exclusão lista com um único nó
+```c
+p = head;
+head = NULL;
+tail = NULL;
+free(p);
+```
+
+
+#####Exclusão no início de lista com mais de um elemento.
+```c
+p = head;
+head = p->next;
+head->prior = NULL;
+free(p);
+```
+
+
+
+#####Exclusão no final de lista com mais de um elemento.
+```c
+p = tail;
+tail = p->prior;
+tail->next = NULL;
+free(p);
+
+//Outra forma de resolver
+p = tail;
+p->prior->next = NULL;
+tail = p->prior;
+free(p);
+```
+
+
+#####Exclusão de todos os elementos(clear).
+```c
+p = head->next;
+while(p != NULL){
+  free(head);
+  head = p;
+  p = p->next;
+}
+free(head);
+head = NULL;
+tail = NULL;
+```
+
+
+
