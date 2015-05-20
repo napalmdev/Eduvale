@@ -728,4 +728,13 @@ c) Prioridade(número menor implica em prioridade maior)
 Em gerência de memória a partir da alocação simples explique as principais deficiências e as soluções até a Alocação Contígua Particionada Estática.
 
 ** Resposta: **
->Minha resposta manow
+>####Alocação simples:
+>A 1ª forma de alocação simples conseguiu seperar o escopo da MP em duas partes: Programas e SO, assim a única              >preocupação era o programa não ultrapassar seu espaço disponível. Porém, o problema aqui era que o programa podia          >propositalmente ou não acessar a área de memória do SO. 
+>
+>Já a 2ª forma solucionou este problema criando registradores para limitar as áreas entre o SO e a aplicação. A desvantagem >era que quando um programa acabava ultrapassando o tamanho de sua área, o funcionamento era comprometido.
+>
+>Visando solucionar este problema de espaço comprometido, a MP começou a ser dividida em três áreas, a área do SO, a área   >do programa e uma área livre, que seria utilizada como espaço extra para quando o programa ultrapassase sua área de uso.   >Mas quando um programa não utilizava toda sua área de uso, o espaço que restava não era utilizado e acabava sendo          >desperdiçado.
+>####Técnica de Overlay:
+>Visando sanar o desperdício de memória esta técnica subdivide o espaço alocado pelos programas em módulos, esta subdivisão permite que os módulo independentes utilizem a mesma área de memória, por serem independentes, caso seja necessário os módulos podem se alternar para fazer uso do espaço de memória. 
+>####Alocação Contígua Particionada Estática:
+>Este modelo de alocação dividia a memória em partições, essas parti~ções tinham tamanho fixo e eram definidas de acordo com o tamanho dos programas, cada programa só poderia utilizar a partição para a qual ele foi definido mesmo que outra estivesse vazia. O bom deste formato é que a divisão de espaço era explícita por programa, porém a pior desvantagem é que não era feito o uso mais eficiente da memória pois caso uma partição estivesse livre e quisesse aproveitar aquele espaço para programas definidos para outras partições, o sistema teria que ser desativado e reiniciado com uma nova configuração. 
