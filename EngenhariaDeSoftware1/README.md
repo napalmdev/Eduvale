@@ -67,4 +67,12 @@ D) Associação
 
 
  ----------------------------------------------------------
- #08/05/2015
+ #29/05/2015
+
+##Exercício Engenharia de Software
+
+####1) O que é UML?
+
+####2) Descreva sobre Diagrama Estrutural e dagrama de comportamento
+
+####3) Descreva sobre Diagrama de Classe, Caso de Uso, Sequência e Atividade.

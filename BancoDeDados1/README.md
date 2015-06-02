@@ -392,3 +392,9 @@ h) - Contar quantas cidades tem na região Sudeste
  ```sql
  SELECT COUNT(*) AS Sudeste FROM tblcidades WHERE CidadeUF IN ('PR', 'SP', 'RJ', 'MG')  
 ```
+
+
+
+---------------------------------------
+#25/05/2015
+

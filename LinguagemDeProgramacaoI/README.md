@@ -878,3 +878,147 @@ tail = NULL;
 
 
 
+------------------
+#26/05/2015
+
+####Exercício Agenda Lista
+
+
+```c
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+
+typedef struct stContato TContato;
+struct stContato{
+    char nome[50];
+  char fone[30];
+};
+
+   typedef struct stCelula TCelula;
+      struct stCelula{
+        
+      TContato* contato;
+      TCelula* prior;
+      TCelula* next;
+   };
+   typedef struct stLista TLista; 
+   struct stLista{
+    TCelula*head;
+    TCelula*tail;
+   
+   };
+   
+   void inicializa(TLista*);
+   int tamanho(TLista);
+   void insere(TLista*, TContato*);
+   void insereSort(TLista*, TContato*);
+   void exibe(TLista);
+   void salva(TLista*);
+   void carrega(TLista*);
+   void limpa(TLista*);
+   
+   TContato* criarContato(char*,char*);
+   
+   main(){
+    TLista lista;
+    inicializa(&lista);
+    if(lista.head==NULL && lista.tail==NULL){
+      printf("\n Lista inicializada.");
+      }
+        TContato* c1= criarContato("Abdul Mohamed","4330");
+        TContato* c2= criarContato("Sheldon Cooper","3404");
+        TContato* c3= criarContato("Japa Japonex","3333");
+        insere(&lista,c1);
+        insere(&lista,c2);
+        insere(&lista,c3);
+        
+        printf("\n Tamanho da lista: %d", tamanho(lista));
+        exibe(lista);
+        printf("\n\n\n\n");
+  system("PAUSE");  
+  
+}
+    //TAD - Tipo Abstrato de Dado
+    //ADT - Abstract Data type
+    
+    void inicializa (TLista * lista){
+      lista->head = NULL;
+      lista->tail = NULL;
+      
+  }
+    int tamanho(TLista lista){
+      TCelula* p= lista.head;
+      int qtd=0;
+      while(p!=NULL){
+        qtd++;
+        p=p -> next;
+        
+    }
+  return qtd;
+}
+   
+void insere(TLista * lista, TContato * contato){
+ TCelula*celula=(TCelula*) malloc (sizeof(TCelula));
+ celula -> contato = contato;
+ celula -> next = NULL;
+ celula -> prior = lista->tail;
+   if(lista -> head == NULL){
+    lista->head =celula;
+    lista->tail=celula;
+   }else{
+    lista->tail->next=celula;
+    lista->tail=celula;
+   }
+}
+   
+void exibe (TLista lista){
+TCelula *p = lista.head;
+while(p!=NULL){
+  TContato*c = p->contato;
+  printf(" \n Nome: %s \t Fone: %s", c->nome,c->fone);
+  p=p->next;
+   }
+}
+   
+     
+TContato* criarContato(char*nome, char*fone){
+  TContato* contato =(TContato*) malloc(sizeof(TContato));
+  strcpy(contato->nome,nome);
+  strcpy(contato->fone,fone);
+  return contato;
+}
+  
+ void limpa(TLista *lista){
+  TCelula *p, *q;
+  if(lista->head==NULL){
+    return;
+   }
+   p=lista->head;
+   q=p->next;
+   
+   while(q!=NULL){
+    free(p);
+    p=q;
+    q=q->next;
+   }
+   free(p);
+   lista->head=NULL;
+   lista->tail=NULL;
+ }
+   
+
+
+```
+
+-------
+##OBS:
+>
+
+------
+
+
+###Exercícios para a casa
+Criar uma versão recursiva para as funções exibe tamanho e limpa, e também criar inserção no início.
+Criar um exibe reverso.
