@@ -1022,3 +1022,183 @@ TContato* criarContato(char*nome, char*fone){
 ###Exercícios para a casa
 Criar uma versão recursiva para as funções exibe tamanho e limpa, e também criar inserção no início.
 Criar um exibe reverso.
+
+
+
+
+----------
+02/06/2015
+
+
+####Lista simplesmente ligada
+
+Criar uma função insere Início que recebe um ponteiro p para uma celula, e insere a celula no início da lista.
+
+
+```c
+  typedef struct celula TCelula;
+  struct celula{
+    Tinfo info;
+    Tcelula *proximo;
+  }
+
+  //Primeira forma
+  void insereInicio(TCelula* p){
+    p->proximo = inicio;
+    if(inicio ==  NULL){
+      fim = p;
+    }
+    inicio = p;
+  }
+
+
+  //Segunda forma
+  void insereInicio(TCelula* p){
+    if(inicio ==  NULL){
+      p->proximo = NULL;
+      fim = p;
+      inicio = p;
+    }else{
+      p->proximo = inicio;
+      inicio = p;
+    }
+  }
+
+
+
+
+  //Primeira forma
+  void insereFinal(TCelula* p){
+    p->proximo = NULL;
+    if(inicio ==  NULL){
+      fim = p;
+      inicio = p;
+    }else{
+      fim->proximo = p;
+      fim = p;
+    }
+  }
+
+  //Tamanho Iterativo
+  int tamanho(){
+    int qtd = 0;
+    TCelula* p;
+    p = inicio;   
+    
+    while(p != NULL){
+     qtd++;
+     p = p->proximo;
+    }
+    return qtd;
+  }
+  
+  //Tamanho Recursivo
+  int tamanhoRec(){
+    return tRec(inicio);
+  }
+
+  int tRec(TCelula* inicio){
+    if(inicio == NULL){
+      return 0;
+    }
+    return 1 + tRec(inicio->proximo);
+  }
+
+  void excluiFim(){
+    if(inicio == NULL){ //se a lista esta vazia
+      return;
+    }else if( inicio == fim){ //se tem soh um no na lista
+      free(inicio);
+      inicio = fim = NULL;
+    }else{ //se tem mais de um no na lista
+      TCelula* p = inicio;
+      while( p->proximo != fim){
+        p = p->proximo;
+      }
+      free(fim);
+      p->proximo = NULL;
+      fim = p;
+
+    }
+  }
+
+
+  void excluiInicio(){
+    if(inicio == NULL){ //se a lista esta vazia
+      return;
+    }else if( inicio == fim){ //se tem soh um no na lista
+      free(inicio);
+      inicio = fim = NULL;
+    }else{ //se tem mais de um no na lista
+      TCelula* p = inicio->proximo;
+      free(inicio);
+      inicio = p;
+    }
+  }
+
+
+  void insereInicio(TCelula *p){
+    p->proximo = inicio;
+    p->anterior = NULL;
+    if(inicio == NULL){
+      inicio = p;
+      fim = p;
+    }else{
+      inicio->anterior = p;
+      inicio = p;
+    }
+  }
+
+
+  void insereFim(TCelula *p){
+    p->anterior = fim;
+    p->proximo = NULL;
+    if(inicio == NULL){
+      inicio = p;
+      fim = p;
+    }else{
+      fim->proximo = p;
+      fim = p;
+    }
+  }
+
+
+
+
+  void excluiInicio(){
+    if(inicio == NULL){ //se a lista esta vazia
+      return;
+    }else if( inicio == fim){ //se tem soh um no na lista
+      free(inicio);
+      inicio = fim = NULL;
+    }else{ //se tem mais de um no na lista
+      TCelula* p = inicio->proximo;
+      p->anterior = NULL;
+      free(inicio);
+      inicio = p;
+    }
+  }
+
+
+
+
+  void excluiFim(){
+    if(inicio == NULL){ //se a lista esta vazia
+      return;
+    }else if( inicio == fim){ //se tem soh um no na lista
+      free(inicio);
+      inicio = fim = NULL;
+    }else{ //se tem mais de um no na lista
+      TCelula* p = fim;
+      fim = p->anterior;
+      free(p);
+      fim->proximo = NULL;
+      
+      
+    }
+  }
+
+
+```
+
+
